@@ -6,42 +6,21 @@
 <title>🌟 لعبة الضاد - مستر أحمد رميح</title>
 <link href="https://cdn.jsdelivr.net/npm/@fontsource/tajawal@5.0.0/index.css" rel="stylesheet">
 <style>
-:root {
-  --primary: #46178f; --primary-light: #7b2cbf; --accent: #ffd60a;
-  --success: #06a77d; --danger: #e63946; --info: #457b9d;
-  --dark: #1a0933; --warning: #ff9500;
-}
+:root { --primary: #46178f; --primary-light: #7b2cbf; --accent: #ffd60a; --success: #06a77d; --danger: #e63946; --info: #457b9d; --dark: #1a0933; --warning: #ff9500; }
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Tajawal',sans-serif; }
-body {
-  background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
-  min-height:100vh; color:#fff; overflow-x:hidden;
-}
-
+body { background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--primary-light) 100%); min-height:100vh; color:#fff; overflow-x:hidden; }
 .logo { display:flex; align-items:center; justify-content:center; gap:15px; margin:20px 0; }
-.logo-icon {
-  width:80px; height:80px; background:linear-gradient(135deg, var(--accent), var(--warning));
-  border-radius:50%; display:flex; align-items:center; justify-content:center;
-  font-size:3em; color:var(--primary); font-weight:900;
-  box-shadow:0 10px 30px rgba(255,214,10,.4); border:4px solid rgba(255,255,255,.3);
-  animation:pulse 2s infinite;
-}
+.logo-icon { width:80px; height:80px; background:linear-gradient(135deg, var(--accent), var(--warning)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:3em; color:var(--primary); font-weight:900; box-shadow:0 10px 30px rgba(255,214,10,.4); border:4px solid rgba(255,255,255,.3); animation:pulse 2s infinite; }
 @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.05);} }
 .logo-text h1 { font-size:2.5em; color:var(--accent); text-shadow:3px 3px 10px rgba(0,0,0,.5); }
 .logo-text p { font-size:1em; opacity:.9; }
-
 .screen { display:none; padding:20px; max-width:1400px; margin:0 auto; animation:fadeIn .5s; }
 .screen.active { display:block; }
 @keyframes fadeIn { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
 h1,h2,h3 { text-align:center; margin:15px 0; text-shadow:2px 2px 8px rgba(0,0,0,.3); }
 h1 { font-size:2.2em; color:var(--accent); }
 h2 { font-size:1.6em; }
-
-.btn {
-  background:var(--accent); color:var(--primary); border:none; padding:12px 24px;
-  font-size:1em; font-weight:bold; border-radius:12px; cursor:pointer; margin:5px;
-  transition:all .2s; box-shadow:0 4px 0 #b8860b;
-  display:inline-flex; align-items:center; gap:8px; font-family:inherit;
-}
+.btn { background:var(--accent); color:var(--primary); border:none; padding:12px 24px; font-size:1em; font-weight:bold; border-radius:12px; cursor:pointer; margin:5px; transition:all .2s; box-shadow:0 4px 0 #b8860b; display:inline-flex; align-items:center; gap:8px; font-family:inherit; }
 .btn:hover { transform:translateY(-2px); box-shadow:0 6px 0 #b8860b; }
 .btn:active { transform:translateY(2px); box-shadow:0 2px 0 #b8860b; }
 .btn-danger { background:var(--danger); color:#fff; box-shadow:0 4px 0 #9d0208; }
@@ -51,58 +30,27 @@ h2 { font-size:1.6em; }
 .btn-secondary { background:#6c757d; color:#fff; box-shadow:0 4px 0 #495057; }
 .btn-sm { padding:8px 15px; font-size:.9em; }
 .btn-lg { padding:16px 32px; font-size:1.2em; }
-
-.card {
-  background:rgba(255,255,255,.12); backdrop-filter:blur(10px);
-  border-radius:18px; padding:25px; margin:15px 0;
-  border:2px solid rgba(255,255,255,.2); box-shadow:0 8px 32px rgba(0,0,0,.2);
-}
-input,select,textarea {
-  width:100%; padding:12px; margin:8px 0; border-radius:10px;
-  border:2px solid rgba(255,255,255,.3); background:rgba(255,255,255,.95);
-  color:#333; font-size:1em; font-family:inherit;
-}
+.card { background:rgba(255,255,255,.12); backdrop-filter:blur(10px); border-radius:18px; padding:25px; margin:15px 0; border:2px solid rgba(255,255,255,.2); box-shadow:0 8px 32px rgba(0,0,0,.2); }
+input,select,textarea { width:100%; padding:12px; margin:8px 0; border-radius:10px; border:2px solid rgba(255,255,255,.3); background:rgba(255,255,255,.95); color:#333; font-size:1em; font-family:inherit; }
 input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accent); }
-
 .login-box { max-width:500px; margin:30px auto; text-align:center; }
 .role-btn { display:flex; align-items:center; justify-content:center; gap:15px; width:100%; margin:12px 0; font-size:1.2em; padding:20px; }
 .role-btn .icon { font-size:2em; }
-
-.topbar {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:15px 20px; background:rgba(0,0,0,.3); border-radius:15px;
-  margin-bottom:20px; flex-wrap:wrap; gap:10px; backdrop-filter:blur(10px);
-}
+.topbar { display:flex; justify-content:space-between; align-items:center; padding:15px 20px; background:rgba(0,0,0,.3); border-radius:15px; margin-bottom:20px; flex-wrap:wrap; gap:10px; backdrop-filter:blur(10px); }
 .topbar .user-info { display:flex; align-items:center; gap:10px; font-size:1.1em; font-weight:bold; }
-.topbar .avatar {
-  width:45px; height:45px; border-radius:50%;
-  background:linear-gradient(135deg, var(--accent), var(--warning));
-  display:flex; align-items:center; justify-content:center;
-  font-size:1.5em; color:var(--primary);
-}
-
+.topbar .avatar { width:45px; height:45px; border-radius:50%; background:linear-gradient(135deg, var(--accent), var(--warning)); display:flex; align-items:center; justify-content:center; font-size:1.5em; color:var(--primary); }
+.sync-badge { display:inline-flex; align-items:center; gap:5px; background:rgba(16,185,129,.2); padding:4px 10px; border-radius:15px; font-size:.8em; border:1px solid rgba(16,185,129,.4); }
+.sync-dot { width:8px; height:8px; border-radius:50%; background:var(--success); animation:blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.3;} }
 .tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; background:rgba(0,0,0,.2); padding:10px; border-radius:15px; }
-.tab {
-  padding:10px 16px; background:rgba(255,255,255,.1); border-radius:10px;
-  cursor:pointer; border:2px solid transparent; transition:all .2s;
-  display:flex; align-items:center; gap:6px; font-weight:bold; font-size:.95em;
-}
+.tab { padding:10px 16px; background:rgba(255,255,255,.1); border-radius:10px; cursor:pointer; border:2px solid transparent; transition:all .2s; display:flex; align-items:center; gap:6px; font-weight:bold; font-size:.95em; }
 .tab:hover { background:rgba(255,255,255,.2); }
 .tab.active { background:var(--accent); color:var(--primary); border-color:#fff; }
-
 .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:15px; }
 .grid-2 { display:grid; grid-template-columns:repeat(auto-fill, minmax(350px, 1fr)); gap:15px; }
-
-.group-card {
-  background:linear-gradient(135deg, rgba(255,255,255,.2), rgba(255,255,255,.05));
-  border-radius:15px; padding:20px; transition:all .3s; border:2px solid transparent;
-  position:relative; overflow:hidden;
-}
+.group-card { background:linear-gradient(135deg, rgba(255,255,255,.2), rgba(255,255,255,.05)); border-radius:15px; padding:20px; transition:all .3s; border:2px solid transparent; position:relative; overflow:hidden; }
 .group-card:hover { transform:translateY(-5px); border-color:var(--accent); }
-.group-card.crown {
-  background:linear-gradient(135deg, var(--accent), var(--warning));
-  color:var(--primary); box-shadow:0 10px 30px rgba(255,214,10,.4);
-}
+.group-card.crown { background:linear-gradient(135deg, var(--accent), var(--warning)); color:var(--primary); box-shadow:0 10px 30px rgba(255,214,10,.4); }
 .group-card .crown-badge { position:absolute; top:10px; left:10px; font-size:2em; animation:bounce 1s infinite; }
 @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);} }
 .group-card .group-name { font-size:1.3em; font-weight:bold; margin-bottom:10px; }
@@ -111,12 +59,7 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
 .group-card.crown .group-info span { background:rgba(0,0,0,.15); }
 .group-card .group-score { font-size:2.5em; font-weight:900; text-align:center; color:var(--accent); margin:15px 0; }
 .group-card.crown .group-score { color:var(--primary); }
-.group-card .actions { display:flex; gap:5px; justify-content:center; margin-top:10px; flex-wrap:wrap; }
-
-.class-card {
-  background:linear-gradient(135deg, rgba(69,123,157,.3), rgba(69,123,157,.1));
-  border-radius:15px; padding:20px; border:2px solid rgba(255,255,255,.2); transition:all .3s;
-}
+.class-card { background:linear-gradient(135deg, rgba(69,123,157,.3), rgba(69,123,157,.1)); border-radius:15px; padding:20px; border:2px solid rgba(255,255,255,.2); transition:all .3s; }
 .class-card:hover { transform:translateY(-3px); border-color:var(--accent); }
 .class-card .class-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; padding-bottom:10px; border-bottom:2px solid rgba(255,255,255,.2); }
 .class-card .class-name { font-size:1.3em; font-weight:bold; display:flex; align-items:center; gap:10px; }
@@ -124,68 +67,31 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
 .class-card .stat { text-align:center; }
 .class-card .stat-value { font-size:1.5em; font-weight:bold; color:var(--accent); }
 .class-card .stat-label { font-size:.85em; opacity:.8; }
-
 .wheel-container { position:relative; width:340px; height:340px; margin:20px auto; }
-.wheel {
-  width:100%; height:100%; border-radius:50%; border:10px solid var(--accent);
-  position:relative; transition:transform 5s cubic-bezier(.17,.67,.21,.99);
-  box-shadow:0 0 50px rgba(255,214,10,.5), inset 0 0 30px rgba(0,0,0,.3);
-}
+.wheel { width:100%; height:100%; border-radius:50%; border:10px solid var(--accent); position:relative; transition:transform 5s cubic-bezier(.17,.67,.21,.99); box-shadow:0 0 50px rgba(255,214,10,.5), inset 0 0 30px rgba(0,0,0,.3); }
 .wheel-pointer { position:absolute; top:-25px; left:50%; transform:translateX(-50%); font-size:3em; z-index:10; filter:drop-shadow(0 3px 5px rgba(0,0,0,.5)); }
-.wheel-center {
-  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  width:60px; height:60px; border-radius:50%;
-  background:linear-gradient(135deg, var(--accent), var(--warning));
-  display:flex; align-items:center; justify-content:center;
-  font-size:1.5em; color:var(--primary); font-weight:900;
-  box-shadow:0 5px 15px rgba(0,0,0,.3); z-index:5;
-}
-
-.revealed-card {
-  background:linear-gradient(135deg, var(--accent), var(--warning));
-  color:var(--primary); border-radius:25px; padding:30px; margin:20px auto;
-  max-width:500px; text-align:center; box-shadow:0 20px 50px rgba(0,0,0,.4);
-  border:4px solid rgba(255,255,255,.3); position:relative; overflow:hidden;
-}
+.wheel-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg, var(--accent), var(--warning)); display:flex; align-items:center; justify-content:center; font-size:1.5em; color:var(--primary); font-weight:900; box-shadow:0 5px 15px rgba(0,0,0,.3); z-index:5; }
+.revealed-card { background:linear-gradient(135deg, var(--accent), var(--warning)); color:var(--primary); border-radius:25px; padding:30px; margin:20px auto; max-width:500px; text-align:center; box-shadow:0 20px 50px rgba(0,0,0,.4); border:4px solid rgba(255,255,255,.3); position:relative; overflow:hidden; }
 .revealed-card.show { animation:cardReveal .8s; }
-@keyframes cardReveal {
-  0% { transform:scale(0) rotate(180deg); opacity:0; }
-  50% { transform:scale(1.1) rotate(0); }
-  100% { transform:scale(1) rotate(0); opacity:1; }
-}
+@keyframes cardReveal { 0% { transform:scale(0) rotate(180deg); opacity:0; } 50% { transform:scale(1.1) rotate(0); } 100% { transform:scale(1) rotate(0); opacity:1; } }
 .revealed-card .card-type { font-size:.9em; background:rgba(0,0,0,.2); padding:5px 15px; border-radius:20px; display:inline-block; margin-bottom:15px; }
 .revealed-card .card-title { font-size:1.8em; font-weight:900; margin:10px 0; }
 .revealed-card .card-desc { font-size:1.1em; margin:15px 0; line-height:1.6; }
 .revealed-card .card-points { font-size:1.5em; font-weight:bold; margin-top:15px; }
-
 .score-display { font-size:3.5em; text-align:center; color:var(--accent); margin:20px 0; text-shadow:3px 3px 10px rgba(0,0,0,.5); font-weight:900; }
-
-.question-item {
-  background:rgba(255,255,255,.1); padding:18px; border-radius:12px;
-  margin:10px 0; border-right:5px solid var(--accent);
-}
+.question-item { background:rgba(255,255,255,.1); padding:18px; border-radius:12px; margin:10px 0; border-right:5px solid var(--accent); }
 .question-item .q-text { font-size:1.1em; font-weight:bold; margin-bottom:10px; }
 .question-item .q-options { display:flex; flex-wrap:wrap; gap:8px; }
 .question-item .q-option { background:rgba(255,255,255,.15); padding:6px 12px; border-radius:8px; font-size:.9em; }
 .question-item .q-option.correct { background:var(--success); }
 .question-item .q-points { display:inline-block; background:var(--accent); color:var(--primary); padding:3px 10px; border-radius:15px; font-size:.85em; font-weight:bold; margin-top:8px; }
-
 .points-row { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:15px 0; }
-.points-btn {
-  padding:12px 20px; border-radius:12px; border:none; font-weight:bold;
-  cursor:pointer; font-size:1em; transition:all .2s;
-  display:flex; align-items:center; gap:5px; box-shadow:0 3px 0 rgba(0,0,0,.2);
-  font-family:inherit;
-}
+.points-btn { padding:12px 20px; border-radius:12px; border:none; font-weight:bold; cursor:pointer; font-size:1em; transition:all .2s; display:flex; align-items:center; gap:5px; box-shadow:0 3px 0 rgba(0,0,0,.2); font-family:inherit; }
 .points-btn.plus { background:var(--success); color:#fff; }
 .points-btn.minus { background:var(--danger); color:#fff; }
 .points-btn:hover { transform:scale(1.05); }
-
 .leaderboard { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:15px; }
-.lb-item {
-  background:rgba(255,255,255,.15); padding:20px; border-radius:15px;
-  text-align:center; position:relative; transition:all .3s; border:2px solid transparent;
-}
+.lb-item { background:rgba(255,255,255,.15); padding:20px; border-radius:15px; text-align:center; position:relative; transition:all .3s; border:2px solid transparent; }
 .lb-item:hover { transform:translateY(-3px); border-color:var(--accent); }
 .lb-item.first { background:linear-gradient(135deg, var(--accent), var(--warning)); color:var(--primary); box-shadow:0 10px 30px rgba(255,214,10,.4); }
 .lb-item.second { background:linear-gradient(135deg, #c0c0c0, #a8a8a8); color:#333; }
@@ -196,82 +102,39 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
 .lb-item .score { font-size:2em; color:var(--accent); margin-top:5px; font-weight:900; }
 .lb-item.first .score { color:var(--primary); }
 .lb-item.second .score { color:#333; }
-
 .modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85); z-index:100; justify-content:center; align-items:center; padding:20px; backdrop-filter:blur(8px); overflow-y:auto; }
 .modal-bg.show { display:flex; }
-.modal {
-  background:linear-gradient(135deg, var(--primary), var(--primary-light));
-  border-radius:20px; padding:30px; max-width:600px; width:100%;
-  max-height:90vh; overflow-y:auto; border:3px solid var(--accent);
-  box-shadow:0 20px 60px rgba(0,0,0,.5); margin:auto;
-}
-
-.toast {
-  position:fixed; top:20px; left:50%; transform:translateX(-50%);
-  background:var(--success); color:#fff; padding:15px 30px;
-  border-radius:12px; z-index:200; font-weight:bold;
-  box-shadow:0 10px 30px rgba(0,0,0,.3); animation:slideDown .3s;
-  display:flex; align-items:center; gap:10px; font-size:1.1em;
-}
+.modal { background:linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius:20px; padding:30px; max-width:600px; width:100%; max-height:90vh; overflow-y:auto; border:3px solid var(--accent); box-shadow:0 20px 60px rgba(0,0,0,.5); margin:auto; }
+.toast { position:fixed; top:20px; left:50%; transform:translateX(-50%); background:var(--success); color:#fff; padding:15px 30px; border-radius:12px; z-index:200; font-weight:bold; box-shadow:0 10px 30px rgba(0,0,0,.3); animation:slideDown .3s; display:flex; align-items:center; gap:10px; font-size:1.1em; }
+.toast.err { background:var(--danger); }
 @keyframes slideDown { from{transform:translate(-50%,-100px); opacity:0;} to{transform:translate(-50%,0); opacity:1;} }
-
 .flex-row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
 .flex-row > * { flex:1; min-width:150px; }
 .flex-center { display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:wrap; }
-
 .badge { display:inline-block; padding:5px 12px; border-radius:20px; font-size:.85em; font-weight:bold; margin:3px; }
 .badge-crown { background:var(--accent); color:var(--primary); }
 .badge-info { background:var(--info); color:#fff; }
 .badge-success { background:var(--success); color:#fff; }
 .badge-warning { background:var(--warning); color:#fff; }
-
 .stats-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:15px; margin:20px 0; }
 .stat-box { background:rgba(255,255,255,.1); padding:20px; border-radius:15px; text-align:center; border:2px solid rgba(255,255,255,.2); }
 .stat-box .stat-icon { font-size:2.5em; margin-bottom:10px; }
 .stat-box .stat-value { font-size:2em; font-weight:900; color:var(--accent); }
 .stat-box .stat-label { font-size:.9em; opacity:.8; margin-top:5px; }
-
-.log-item {
-  background:rgba(255,255,255,.08); padding:12px 18px; border-radius:10px;
-  margin:8px 0; display:flex; align-items:center; gap:12px;
-  border-right:4px solid var(--accent);
-}
+.log-item { background:rgba(255,255,255,.08); padding:12px 18px; border-radius:10px; margin:8px 0; display:flex; align-items:center; gap:12px; border-right:4px solid var(--accent); }
 .log-item .log-icon { font-size:1.5em; }
 .log-item .log-content { flex:1; }
 .log-item .log-time { font-size:.8em; opacity:.7; }
 .log-item.points-plus { border-color:var(--success); }
 .log-item.points-minus { border-color:var(--danger); }
 .log-item.card-draw { border-color:var(--warning); }
-
-/* ===== شاشة انتظار الكارت للقائد ===== */
-.waiting-card {
-  background:rgba(255,255,255,.05); border:3px dashed rgba(255,214,10,.4);
-  border-radius:20px; padding:40px 20px; text-align:center; margin:20px 0;
-}
+.waiting-card { background:rgba(255,255,255,.05); border:3px dashed rgba(255,214,10,.4); border-radius:20px; padding:40px 20px; text-align:center; margin:20px 0; }
 .waiting-card .wait-icon { font-size:4em; margin-bottom:15px; animation:waitPulse 2s infinite; }
 @keyframes waitPulse { 0%,100%{transform:scale(1); opacity:.6;} 50%{transform:scale(1.1); opacity:1;} }
-
-.new-card-alert {
-  background:linear-gradient(135deg, var(--accent), var(--warning));
-  color:var(--primary); border-radius:20px; padding:25px; margin:20px 0;
-  text-align:center; animation:alertPop .5s, alertGlow 1.5s infinite;
-  box-shadow:0 10px 40px rgba(255,214,10,.5);
-}
+.new-card-alert { background:linear-gradient(135deg, var(--accent), var(--warning)); color:var(--primary); border-radius:20px; padding:25px; margin:20px 0; text-align:center; animation:alertPop .5s, alertGlow 1.5s infinite; box-shadow:0 10px 40px rgba(255,214,10,.5); }
 @keyframes alertPop { 0%{transform:scale(0); opacity:0;} 100%{transform:scale(1); opacity:1;} }
-@keyframes alertGlow {
-  0%,100%{box-shadow:0 10px 40px rgba(255,214,10,.5);}
-  50%{box-shadow:0 10px 60px rgba(255,214,10,.8), 0 0 80px rgba(255,214,10,.4);}
-}
-
-@media (max-width:768px) {
-  h1 { font-size:1.8em; }
-  .logo-icon { width:60px; height:60px; font-size:2.2em; }
-  .score-display { font-size:2.5em; }
-  .wheel-container { width:280px; height:280px; }
-  .tab { padding:8px 12px; font-size:.85em; }
-  .btn { padding:10px 18px; font-size:.95em; }
-}
-
+@keyframes alertGlow { 0%,100%{box-shadow:0 10px 40px rgba(255,214,10,.5);} 50%{box-shadow:0 10px 60px rgba(255,214,10,.8), 0 0 80px rgba(255,214,10,.4);} }
+@media (max-width:768px) { h1 { font-size:1.8em; } .logo-icon { width:60px; height:60px; font-size:2.2em; } .score-display { font-size:2.5em; } .wheel-container { width:280px; height:280px; } .tab { padding:8px 12px; font-size:.85em; } .btn { padding:10px 18px; font-size:.95em; } }
 .glow { animation:glow 2s ease-in-out infinite alternate; }
 @keyframes glow { from{box-shadow:0 0 10px var(--accent);} to{box-shadow:0 0 25px var(--accent), 0 0 40px var(--accent);} }
 .empty-state { text-align:center; padding:40px 20px; opacity:.7; }
@@ -328,7 +191,9 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
       <div class="avatar">👨‍🏫</div>
       <div>
         <div style="font-size:1.2em">مستر أحمد رميح</div>
-        <div style="font-size:.85em; opacity:.8">مدرس اللغة العربية</div>
+        <div style="font-size:.85em; opacity:.8">
+          <span class="sync-badge"><span class="sync-dot"></span> متصل ومشترك</span>
+        </div>
       </div>
     </div>
     <button class="btn btn-danger btn-sm" onclick="logout()">🚪 خروج</button>
@@ -347,19 +212,17 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
     <div class="tab" onclick="switchTab('leaderboard', event)"><span>🏆</span> الترتيب</div>
   </div>
 
-  <!-- تبويب الفصول -->
   <div id="tab-classes" class="tab-content">
     <div class="card">
       <h2>🏫 إدارة الفصول</h2>
       <div class="flex-row">
-        <input type="text" id="newClassName" placeholder="✏️ اسم الفصل (مثال: الصف الأول أ)">
+        <input type="text" id="newClassName" placeholder="✏️ اسم الفصل">
         <button class="btn btn-success" onclick="addClass()">➕ إضافة</button>
       </div>
     </div>
     <div id="classesList" class="grid-2"></div>
   </div>
 
-  <!-- تبويب المجموعات -->
   <div id="tab-groups" class="tab-content" style="display:none">
     <div class="card">
       <h2>👥 المجموعات</h2>
@@ -373,7 +236,6 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
     <div id="groupsList" class="grid"></div>
   </div>
 
-  <!-- تبويب الأسئلة -->
   <div id="tab-questions" class="tab-content" style="display:none">
     <div class="card">
       <h2>❓ إضافة سؤال</h2>
@@ -396,7 +258,6 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
     <div id="questionsList"></div>
   </div>
 
-  <!-- تبويب الكروت -->
   <div id="tab-cards" class="tab-content" style="display:none">
     <div class="card">
       <h2>🎴 إدارة الكروت</h2>
@@ -416,12 +277,11 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
     <div id="cardsList"></div>
   </div>
 
-  <!-- تبويب سحب الكروت -->
   <div id="tab-draw" class="tab-content" style="display:none">
     <div class="card" style="text-align:center">
       <h2>🎯 سحب الكروت</h2>
       <p style="opacity:.8; margin-bottom:20px">
-        المستر يلف العجلة ← يختار المجموعة ← القائد يشوف الكارت على موبايله
+        المستر يلف العجلة ← يختار المجموعة ← القائد يشوف الكارت على موبايله فوراً
       </p>
       
       <div id="drawStep1">
@@ -456,7 +316,7 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
             تم إرسال الكارت لـ <strong id="sentGroupName" style="color:var(--accent)"></strong>
           </p>
           <p style="opacity:.8; margin-bottom:20px">
-            القائد هيشوف الكارت على موبايله دلوقتي
+            القائد هيشوف الكارت على موبايله فوراً
           </p>
           <div class="flex-center">
             <button class="btn btn-lg" onclick="resetDraw()">🎯 سحب كارت تاني</button>
@@ -466,7 +326,6 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
     </div>
   </div>
 
-  <!-- تبويب النقاط -->
   <div id="tab-points" class="tab-content" style="display:none">
     <div class="card">
       <h2>💎 إضافة / خصم نقاط</h2>
@@ -488,7 +347,6 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
     </div>
   </div>
 
-  <!-- تبويب السجل -->
   <div id="tab-log" class="tab-content" style="display:none">
     <div class="card">
       <h2>📜 سجل الأحداث</h2>
@@ -499,7 +357,6 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
     <div id="logList"></div>
   </div>
 
-  <!-- تبويب الترتيب -->
   <div id="tab-leaderboard" class="tab-content" style="display:none">
     <div class="card">
       <h2>🏆 الترتيب</h2>
@@ -520,7 +377,10 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
       <div class="avatar">👑</div>
       <div>
         <div style="font-size:1.2em">قائد: <span id="leaderName"></span></div>
-        <div style="font-size:.85em; opacity:.8" id="leaderGroupInfo"></div>
+        <div style="font-size:.85em; opacity:.8">
+          <span id="leaderGroupInfo"></span>
+          <span class="sync-badge" style="margin-right:8px"><span class="sync-dot"></span> متصل</span>
+        </div>
       </div>
     </div>
     <button class="btn btn-danger btn-sm" onclick="logout()">🚪 خروج</button>
@@ -531,12 +391,10 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
     <div class="tab" onclick="switchLeaderTab('info', event)"><span>💎</span> نقاطي</div>
   </div>
 
-  <!-- تبويب الكارت السري -->
   <div id="leaderTab-card">
     <div id="leaderCardArea"></div>
   </div>
 
-  <!-- تبويب النقاط -->
   <div id="leaderTab-info" style="display:none">
     <div class="card" style="text-align:center">
       <h2>💎 نقاط فريقك</h2>
@@ -564,14 +422,17 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
       <div class="avatar">🎓</div>
       <div>
         <div style="font-size:1.2em">طالب: <span id="studentName"></span></div>
-        <div style="font-size:.85em; opacity:.8">مشاهدة الترتيب</div>
+        <div style="font-size:.85em; opacity:.8">
+          مشاهدة الترتيب
+          <span class="sync-badge" style="margin-right:8px"><span class="sync-dot"></span> مباشر</span>
+        </div>
       </div>
     </div>
     <button class="btn btn-danger btn-sm" onclick="logout()">🚪 خروج</button>
   </div>
 
   <div class="card">
-    <h2>🏆 الترتيب</h2>
+    <h2>🏆 الترتيب المباشر</h2>
     <div class="flex-center" style="margin-bottom:20px">
       <button class="btn" onclick="renderStudentLeaderboard('school')">🏫 المدرسة</button>
       <button class="btn btn-info" onclick="renderStudentLeaderboard('class')">📚 الفصل</button>
@@ -581,28 +442,101 @@ input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accen
   </div>
 </div>
 
-<!-- ========== المودال ========== -->
 <div class="modal-bg" id="modalBg">
   <div class="modal" id="modalContent"></div>
 </div>
 
 <script>
-// ============ قاعدة البيانات ============
-let DB = JSON.parse(localStorage.getItem('dhadGameDB_v3')) || {
+// ============ 🔥 إعدادات JSONBin ============
+const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/6acbc907ffd5d16053620679';
+const JSONBIN_KEY = '$2a$10$JKB7nuxHsyJ8KLe0S8vIDOLSfE82MQ1JiWi/IRZxsiPq8ToTq2xFm';
+// ===========================================
+
+let DB = {
   classes: [], groups: [], questions: [], cards: [],
   teachers: [{user:'ahmed', pass:'1234'}],
   plusValues: [10, 20, 50, 100, 200],
   minusValues: [10, 20, 50, 100, 200],
-  log: []
+  log: [],
+  pendingCards: {}
 };
 
 let currentUser = null;
 let currentAuthRole = null;
 let currentDraw = { card:null, group:null };
-let lastCardId = null;
 let pollInterval = null;
 
-function save() { localStorage.setItem('dhadGameDB_v3', JSON.stringify(DB)); }
+// ============ تحميل البيانات من JSONBin ============
+async function loadData() {
+  try {
+    const response = await fetch(JSONBIN_URL + '/latest', {
+      headers: { 'X-Master-Key': JSONBIN_KEY }
+    });
+    const result = await response.json();
+    if (result && result.record) {
+      DB = result.record;
+      if (!DB.pendingCards) DB.pendingCards = {};
+      if (!DB.log) DB.log = [];
+      if (!DB.classes) DB.classes = [];
+      if (!DB.groups) DB.groups = [];
+      if (!DB.questions) DB.questions = [];
+      if (!DB.cards) DB.cards = [];
+    }
+    return true;
+  } catch (err) {
+    console.error('Load error:', err);
+    return false;
+  }
+}
+
+// ============ حفظ البيانات في JSONBin ============
+async function save() {
+  try {
+    await fetch(JSONBIN_URL, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_KEY
+      },
+      body: JSON.stringify(DB)
+    });
+    return true;
+  } catch (err) {
+    console.error('Save error:', err);
+    toast('❌ فشل الحفظ', 'err');
+    return false;
+  }
+}
+
+// ============ بدء التطبيق ============
+async function initApp() {
+  const ok = await loadData();
+  if (ok) {
+    // بدء polling كل 3 ثواني
+    pollInterval = setInterval(async () => {
+      await loadData();
+      if (currentUser) {
+        if (currentUser.role === 'teacher') {
+          renderTeacherStats();
+          renderGroups();
+          renderClasses();
+          renderCards();
+          renderQuestions();
+          renderLog();
+          renderLeaderboard('school');
+          updateClassFilters();
+        } else if (currentUser.role === 'leader') {
+          loadLeader();
+          renderLeaderCard();
+        } else if (currentUser.role === 'student') {
+          renderStudentLeaderboard('school');
+        }
+      }
+    }, 3000);
+  } else {
+    toast('❌ فشل الاتصال بقاعدة البيانات', 'err');
+  }
+}
 
 // ============ التنقل ============
 function showScreen(id) {
@@ -612,7 +546,7 @@ function showScreen(id) {
 function backToLogin() { showScreen('loginScreen'); }
 function logout() {
   currentUser = null;
-  if (pollInterval) clearInterval(pollInterval);
+  if (pollInterval) { clearInterval(pollInterval); pollInterval = null; }
   showScreen('loginScreen');
 }
 
@@ -630,23 +564,22 @@ function showLogin(role) {
 function doLogin() {
   const u = document.getElementById('authUser').value.trim();
   const p = document.getElementById('authPass').value.trim();
-  if (!u || !p) return toast('❌ أدخل البيانات كاملة');
+  if (!u || !p) return toast('❌ أدخل البيانات كاملة', 'err');
 
   if (currentAuthRole === 'teacher') {
     const t = DB.teachers.find(x => x.user === u && x.pass === p);
-    if (!t) return toast('❌ بيانات المدرس غلط');
+    if (!t) return toast('❌ بيانات المدرس غلط', 'err');
     currentUser = {role:'teacher', name:u};
     loadTeacher();
     showScreen('teacherScreen');
   } else if (currentAuthRole === 'leader') {
     const g = DB.groups.find(x => x.name === u && x.password === p);
-    if (!g) return toast('❌ اسم الفريق أو كلمة المرور غلط');
+    if (!g) return toast('❌ اسم الفريق أو كلمة المرور غلط', 'err');
     currentUser = {role:'leader', name:u, groupId:g.id};
     loadLeader();
     showScreen('leaderScreen');
-    startLeaderPolling();
   } else {
-    if (p !== 'student') return toast('❌ كلمة مرور الطالب: student');
+    if (p !== 'student') return toast('❌ كلمة مرور الطالب: student', 'err');
     currentUser = {role:'student', name:u};
     loadStudent();
     showScreen('studentScreen');
@@ -673,7 +606,7 @@ function switchTab(name, e) {
 }
 
 function renderTeacherStats() {
-  const totalScore = DB.groups.reduce((s,g) => s + g.score, 0);
+  const totalScore = DB.groups.reduce((s,g) => s + (g.score||0), 0);
   document.getElementById('teacherStats').innerHTML = `
     <div class="stat-box"><div class="stat-icon">🏫</div><div class="stat-value">${DB.classes.length}</div><div class="stat-label">الفصول</div></div>
     <div class="stat-box"><div class="stat-icon">👥</div><div class="stat-value">${DB.groups.length}</div><div class="stat-label">المجموعات</div></div>
@@ -684,14 +617,13 @@ function renderTeacherStats() {
 }
 
 // -- الفصول --
-function addClass() {
+async function addClass() {
   const name = document.getElementById('newClassName').value.trim();
-  if (!name) return toast('❌ أدخل اسم الفصل');
-  if (DB.classes.find(c => c.name === name)) return toast('❌ الفصل موجود');
+  if (!name) return toast('❌ أدخل اسم الفصل', 'err');
+  if (DB.classes.find(c => c.name === name)) return toast('❌ الفصل موجود', 'err');
   DB.classes.push({id: Date.now(), name});
-  save();
+  await save();
   document.getElementById('newClassName').value = '';
-  renderClasses(); renderTeacherStats(); updateClassFilters();
   toast('✅ تم إضافة الفصل');
 }
 
@@ -703,8 +635,8 @@ function renderClasses() {
   }
   list.innerHTML = DB.classes.map(c => {
     const groups = DB.groups.filter(g => g.classId === c.id);
-    const totalScore = groups.reduce((s,g) => s + g.score, 0);
-    const topGroup = groups.length ? groups.reduce((a,b) => a.score > b.score ? a : b) : null;
+    const totalScore = groups.reduce((s,g) => s + (g.score||0), 0);
+    const topGroup = groups.length ? groups.reduce((a,b) => (a.score||0) > (b.score||0) ? a : b) : null;
     return `
       <div class="class-card">
         <div class="class-header">
@@ -721,11 +653,11 @@ function renderClasses() {
   }).join('');
 }
 
-function deleteClass(id) {
+async function deleteClass(id) {
   if (!confirm('⚠️ حذف الفصل وجميع مجموعاته؟')) return;
   DB.classes = DB.classes.filter(c => c.id !== id);
   DB.groups = DB.groups.filter(g => g.classId !== id);
-  save(); renderClasses(); renderGroups(); renderTeacherStats(); updateClassFilters();
+  await save();
   toast('✅ تم الحذف');
 }
 
@@ -742,7 +674,7 @@ function updateClassFilters() {
 }
 
 function showAddGroupModal() {
-  if (!DB.classes.length) return toast('❌ أضف فصلاً أولاً');
+  if (!DB.classes.length) return toast('❌ أضف فصلاً أولاً', 'err');
   showModal(`
     <h2>➕ مجموعة جديدة</h2>
     <label>🏫 الفصل:</label>
@@ -751,7 +683,7 @@ function showAddGroupModal() {
     <input type="text" id="mgName" placeholder="مثال: مجموعة النجوم">
     <label>🔢 رقم المجموعة:</label>
     <input type="number" id="mgNumber" placeholder="مثال: 1" value="1">
-    <label>🔑 كلمة مرور القائد (خاصة بالمجموعة):</label>
+    <label>🔑 كلمة مرور القائد:</label>
     <input type="text" id="mgPass" placeholder="كلمة المرور">
     <p style="opacity:.7; font-size:.85em; margin-top:5px">⚠️ كلمة المرور دي هيبقى بيستخدمها قائد الفريق عشان يشوف الكروت</p>
     <div class="flex-center">
@@ -761,19 +693,18 @@ function showAddGroupModal() {
   `);
 }
 
-function confirmAddGroup() {
+async function confirmAddGroup() {
   const classId = parseInt(document.getElementById('mgClass').value);
   const name = document.getElementById('mgName').value.trim();
   const groupNumber = parseInt(document.getElementById('mgNumber').value) || 1;
   const pass = document.getElementById('mgPass').value.trim();
-  if (!name) return toast('❌ أدخل اسم المجموعة');
-  if (!pass) return toast('❌ أدخل كلمة مرور القائد');
+  if (!name) return toast('❌ أدخل اسم المجموعة', 'err');
+  if (!pass) return toast('❌ أدخل كلمة مرور القائد', 'err');
   DB.groups.push({
     id: Date.now(), name, groupNumber, classId, score: 0, password: pass,
     cardsDrawn: 0
   });
-  save(); closeModal();
-  renderGroups(); renderClasses(); renderTeacherStats(); updatePointsView();
+  await save(); closeModal();
   toast('✅ تم إضافة المجموعة');
 }
 
@@ -787,10 +718,10 @@ function renderGroups() {
     list.innerHTML = '<div class="empty-state"><div class="empty-icon">👥</div><p>لا توجد مجموعات</p></div>';
     return;
   }
-  const maxScore = Math.max(...groups.map(g => g.score), 0);
+  const maxScore = Math.max(...groups.map(g => g.score||0), 0);
   list.innerHTML = groups.map(g => {
     const cls = DB.classes.find(c => c.id === g.classId);
-    const isCrown = g.score === maxScore && maxScore > 0;
+    const isCrown = (g.score||0) === maxScore && maxScore > 0;
     return `
       <div class="group-card ${isCrown ? 'crown' : ''}">
         ${isCrown ? '<div class="crown-badge">👑</div>' : ''}
@@ -798,9 +729,9 @@ function renderGroups() {
         <div class="group-info">
           <span>🏫 ${cls ? cls.name : 'غير محدد'}</span>
           <span>🔢 رقم ${g.groupNumber}</span>
-          <span>🔑 ${g.password}</span>
         </div>
-        <div class="group-score">${g.score}</div>
+        <div class="group-score">${g.score||0}</div>
+        <div style="text-align:center; font-size:.85em; opacity:.8">🔑 ${g.password}</div>
         <div class="actions">
           <button class="btn btn-danger btn-sm" onclick="deleteGroup(${g.id})">🗑️ حذف</button>
         </div>
@@ -809,27 +740,26 @@ function renderGroups() {
   }).join('');
 }
 
-function deleteGroup(id) {
+async function deleteGroup(id) {
   if (!confirm('⚠️ حذف المجموعة؟')) return;
   DB.groups = DB.groups.filter(g => g.id !== id);
-  save(); renderGroups(); renderClasses(); renderTeacherStats(); updatePointsView();
+  await save();
   toast('✅ تم الحذف');
 }
 
 // -- الأسئلة --
-function addQuestion() {
+async function addQuestion() {
   const text = document.getElementById('qText').value.trim();
   const inputs = document.querySelectorAll('.q-option-input');
   const options = Array.from(inputs).map(i => i.value.trim());
   const correct = parseInt(document.getElementById('qCorrect').value);
   const points = parseInt(document.getElementById('qPoints').value) || 10;
-  if (!text) return toast('❌ أدخل نص السؤال');
-  if (options.some(o => !o)) return toast('❌ أكمل كل الخيارات');
+  if (!text) return toast('❌ أدخل نص السؤال', 'err');
+  if (options.some(o => !o)) return toast('❌ أكمل كل الخيارات', 'err');
   DB.questions.push({id: Date.now(), text, options, correct, points});
-  save();
+  await save();
   document.getElementById('qText').value = '';
   inputs.forEach(i => i.value = '');
-  renderQuestions(); renderTeacherStats();
   toast('✅ تم إضافة السؤال');
 }
 
@@ -851,25 +781,24 @@ function renderQuestions() {
   `).join('');
 }
 
-function deleteQuestion(id) {
+async function deleteQuestion(id) {
   if (!confirm('⚠️ حذف السؤال؟')) return;
   DB.questions = DB.questions.filter(q => q.id !== id);
-  save(); renderQuestions(); renderTeacherStats();
+  await save();
 }
 
 // -- الكروت --
-function addCard() {
+async function addCard() {
   const type = document.getElementById('cardType').value;
   const title = document.getElementById('cardTitle').value.trim();
   const desc = document.getElementById('cardDesc').value.trim();
   const points = parseInt(document.getElementById('cardPoints').value) || 0;
-  if (!title) return toast('❌ أدخل عنوان الكارت');
+  if (!title) return toast('❌ أدخل عنوان الكارت', 'err');
   DB.cards.push({id: Date.now(), type, title, desc, points});
-  save();
+  await save();
   document.getElementById('cardTitle').value = '';
   document.getElementById('cardDesc').value = '';
   document.getElementById('cardPoints').value = '';
-  renderCards(); renderDrawWheel(); renderTeacherStats();
   toast('✅ تم إضافة الكارت');
 }
 
@@ -894,10 +823,10 @@ function renderCards() {
   `).join('');
 }
 
-function deleteCard(id) {
+async function deleteCard(id) {
   if (!confirm('⚠️ حذف الكارت؟')) return;
   DB.cards = DB.cards.filter(c => c.id !== id);
-  save(); renderCards(); renderDrawWheel(); renderTeacherStats();
+  await save();
 }
 
 // ============ نظام سحب الكروت ============
@@ -932,8 +861,8 @@ function resetDraw() {
 }
 
 function spinDrawWheel() {
-  if (!DB.cards.length) return toast('❌ أضف كروت أولاً');
-  if (!DB.groups.length) return toast('❌ لا توجد مجموعات');
+  if (!DB.cards.length) return toast('❌ أضف كروت أولاً', 'err');
+  if (!DB.groups.length) return toast('❌ لا توجد مجموعات', 'err');
   const wheel = document.getElementById('drawWheel');
   const idx = Math.floor(Math.random() * DB.cards.length);
   const n = DB.cards.length;
@@ -960,12 +889,11 @@ function showDrawStep2() {
   }).join('');
 }
 
-function sendCardToGroup() {
+async function sendCardToGroup() {
   const gid = parseInt(document.getElementById('drawGroupSelect').value);
   currentDraw.group = DB.groups.find(g => g.id === gid);
   
-  // حفظ الكارت في pendingCard عشان القائد يشوفه
-  const pendingCard = {
+  DB.pendingCards[currentDraw.group.id] = {
     id: Date.now(),
     card: currentDraw.card,
     groupId: currentDraw.group.id,
@@ -973,15 +901,11 @@ function sendCardToGroup() {
     timestamp: Date.now(),
     viewed: false
   };
-  localStorage.setItem('pendingCard_' + currentDraw.group.id, JSON.stringify(pendingCard));
   
-  // إضافة للسجل
   addLog('card-draw', `📤 تم إرسال كارت "${currentDraw.card.title}" لـ ${currentDraw.group.name}`);
-  
   currentDraw.group.cardsDrawn = (currentDraw.group.cardsDrawn || 0) + 1;
-  save();
+  await save();
   
-  // عرض رسالة الإرسال
   document.getElementById('drawStep2').style.display = 'none';
   document.getElementById('drawStep3').style.display = 'block';
   document.getElementById('sentGroupName').innerText = currentDraw.group.name;
@@ -1010,23 +934,24 @@ function updatePointsGroups() {
 function showCurrentScore() {
   const sel = document.getElementById('pointsGroup');
   const g = DB.groups.find(x => x.id == sel.value);
-  document.getElementById('currentScore').innerText = g ? g.score : 0;
+  document.getElementById('currentScore').innerText = g ? (g.score||0) : 0;
 }
 
-function addPoints(v) {
+async function addPoints(v) {
   const sel = document.getElementById('pointsGroup');
   const g = DB.groups.find(x => x.id == sel.value);
-  if (!g) return toast('❌ اختر مجموعة');
-  g.score += v;
-  save(); showCurrentScore(); renderGroups(); renderClasses();
+  if (!g) return toast('❌ اختر مجموعة', 'err');
+  g.score = (g.score||0) + v;
+  await save();
+  showCurrentScore();
   addLog(v>0?'points-plus':'points-minus', `${g.name} ${v>0?'+':''}${v}`);
   toast(`${v>0?'➕':'➖'} ${Math.abs(v)} لـ ${g.name}`);
 }
 
-function addCustomPoints(sign) {
+async function addCustomPoints(sign) {
   const v = parseInt(document.getElementById('customPoints').value);
-  if (isNaN(v)) return toast('❌ أدخل رقم');
-  addPoints(v * sign);
+  if (isNaN(v)) return toast('❌ أدخل رقم', 'err');
+  await addPoints(v * sign);
   document.getElementById('customPoints').value = '';
 }
 
@@ -1038,7 +963,6 @@ function addLog(type, message) {
     timestamp: Date.now()
   });
   if (DB.log.length > 100) DB.log = DB.log.slice(0, 100);
-  save();
 }
 
 function renderLog() {
@@ -1058,10 +982,10 @@ function renderLog() {
   `).join('');
 }
 
-function clearLog() {
+async function clearLog() {
   if (!confirm('⚠️ مسح كل السجل؟')) return;
   DB.log = [];
-  save(); renderLog();
+  await save();
   toast('✅ تم المسح');
 }
 
@@ -1075,11 +999,11 @@ function renderLeaderboard(type) {
       document.getElementById('leaderboardList').innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><p>اختر فصلاً</p></div>';
       return;
     }
-    const sorted = DB.groups.filter(g => g.classId == classId).sort((a,b) => b.score - a.score);
+    const sorted = DB.groups.filter(g => g.classId == classId).sort((a,b) => (b.score||0) - (a.score||0));
     renderLeaderboardList(sorted, 'leaderboardList');
   } else {
     lbFilter.style.display = 'none';
-    const sorted = [...DB.groups].sort((a,b) => b.score - a.score);
+    const sorted = [...DB.groups].sort((a,b) => (b.score||0) - (a.score||0));
     renderLeaderboardList(sorted, 'leaderboardList');
   }
 }
@@ -1097,10 +1021,10 @@ function renderLeaderboardList(sorted, targetId) {
     return `
       <div class="lb-item ${i<3 ? classes[i] : ''}">
         <div class="rank">${i<3 ? medals[i] : (i+1)}</div>
-        <div class="name">${g.name} ${i===0 && g.score>0 ? '👑' : ''}</div>
+        <div class="name">${g.name} ${i===0 && (g.score||0)>0 ? '👑' : ''}</div>
         <div class="class-tag">🏫 ${cls ? cls.name : 'غير محدد'}</div>
         <div style="font-size:.85em; opacity:.8">🔢 رقم ${g.groupNumber}</div>
-        <div class="score">${g.score}</div>
+        <div class="score">${g.score||0}</div>
       </div>
     `;
   }).join('');
@@ -1109,13 +1033,14 @@ function renderLeaderboardList(sorted, targetId) {
 // ============ القائد ============
 function loadLeader() {
   const g = DB.groups.find(x => x.id === currentUser.groupId);
+  if (!g) return;
   const cls = DB.classes.find(c => c.id === g.classId);
   document.getElementById('leaderName').innerText = currentUser.name;
   document.getElementById('leaderGroupInfo').innerText = `${g.name} - ${cls ? cls.name : ''} - رقم ${g.groupNumber}`;
-  document.getElementById('leaderScore').innerText = g.score;
-  const classGroups = DB.groups.filter(x => x.classId === g.classId).sort((a,b) => b.score - a.score);
+  document.getElementById('leaderScore').innerText = g.score||0;
+  const classGroups = DB.groups.filter(x => x.classId === g.classId).sort((a,b) => (b.score||0) - (a.score||0));
   document.getElementById('leaderClassRank').innerText = classGroups.findIndex(x => x.id === g.id) + 1;
-  const allGroups = [...DB.groups].sort((a,b) => b.score - a.score);
+  const allGroups = [...DB.groups].sort((a,b) => (b.score||0) - (a.score||0));
   document.getElementById('leaderSchoolRank').innerText = allGroups.findIndex(x => x.id === g.id) + 1;
   renderLeaderCard();
 }
@@ -1130,7 +1055,8 @@ function switchLeaderTab(name, e) {
 
 function renderLeaderCard() {
   const area = document.getElementById('leaderCardArea');
-  const pending = localStorage.getItem('pendingCard_' + currentUser.groupId);
+  if (!area) return;
+  const pending = DB.pendingCards[currentUser.groupId];
   
   if (!pending) {
     area.innerHTML = `
@@ -1138,31 +1064,25 @@ function renderLeaderCard() {
         <div class="wait-icon">⏳</div>
         <h2 style="color:var(--accent)">في انتظار كارت جديد</h2>
         <p style="opacity:.8; margin-top:10px">المستر هيبعتلك كارت، استنى شوية</p>
-        <button class="btn" onclick="renderLeaderCard()" style="margin-top:15px">🔄 تحديث</button>
       </div>
     `;
     return;
   }
   
-  const p = JSON.parse(pending);
-  
-  if (p.viewed) {
-    // الكارت اتشاف قبل كده
+  if (pending.viewed) {
     area.innerHTML = `
       <div class="card" style="text-align:center">
         <div style="font-size:3em; margin-bottom:10px">✅</div>
         <h2>آخر كارت تم كشفه</h2>
-        ${renderCardDisplay(p.card)}
+        ${renderCardDisplay(pending.card)}
         <p style="opacity:.7; margin-top:15px; font-size:.9em">
-          تم الإرسال: ${new Date(p.timestamp).toLocaleString('ar-EG')}
+          تم الإرسال: ${new Date(pending.timestamp).toLocaleString('ar-EG')}
         </p>
-        <button class="btn" onclick="renderLeaderCard()" style="margin-top:15px">🔄 تحديث</button>
       </div>
     `;
     return;
   }
   
-  // كارت جديد - يظهر بشكل مميز
   area.innerHTML = `
     <div class="new-card-alert">
       <div style="font-size:3em; margin-bottom:10px">🎉</div>
@@ -1170,29 +1090,26 @@ function renderLeaderCard() {
       <p style="color:var(--primary); opacity:.9">اضغط عشان تشوف الكارت</p>
     </div>
     <div class="card" style="text-align:center">
-      <button class="btn btn-lg glow" onclick="viewCard(${p.id})">🔓 كشف الكارت</button>
+      <button class="btn btn-lg glow" onclick="viewCard()">🔓 كشف الكارت</button>
     </div>
   `;
 }
 
-function viewCard(pendingId) {
-  const pending = localStorage.getItem('pendingCard_' + currentUser.groupId);
+async function viewCard() {
+  const pending = DB.pendingCards[currentUser.groupId];
   if (!pending) return;
-  const p = JSON.parse(pending);
-  if (p.id !== pendingId) return;
   
-  // تعليم الكارت كـ "تم مشاهدته"
-  p.viewed = true;
-  localStorage.setItem('pendingCard_' + currentUser.groupId, JSON.stringify(p));
+  pending.viewed = true;
+  await save();
   
   const area = document.getElementById('leaderCardArea');
   area.innerHTML = `
     <div class="card" style="text-align:center">
       <h2>🎴 الكارت بتاعك</h2>
-      ${renderCardDisplay(p.card)}
+      ${renderCardDisplay(pending.card)}
       <div class="flex-center" style="margin-top:20px">
-        <button class="btn btn-success btn-lg" onclick="confirmCardDone(${p.id}, true)">✅ تم التنفيذ</button>
-        <button class="btn btn-danger" onclick="confirmCardDone(${p.id}, false)">❌ لم يُنفذ</button>
+        <button class="btn btn-success btn-lg" onclick="confirmCardDone(true)">✅ تم التنفيذ</button>
+        <button class="btn btn-danger" onclick="confirmCardDone(false)">❌ لم يُنفذ</button>
       </div>
     </div>
   `;
@@ -1218,43 +1135,23 @@ function renderCardDisplay(card) {
   `;
 }
 
-function confirmCardDone(pendingId, done) {
-  const pending = localStorage.getItem('pendingCard_' + currentUser.groupId);
+async function confirmCardDone(done) {
+  const pending = DB.pendingCards[currentUser.groupId];
   if (!pending) return;
-  const p = JSON.parse(pending);
-  if (p.id !== pendingId) return;
   
   const g = DB.groups.find(x => x.id === currentUser.groupId);
-  if (done && p.card.points) {
-    g.score += p.card.points;
-    addLog('points-plus', `${g.name} +${p.card.points} من كارت ${p.card.title}`);
-    toast(`✅ +${p.card.points} نقطة`);
+  if (done && pending.card.points) {
+    g.score = (g.score||0) + pending.card.points;
+    addLog('points-plus', `${g.name} +${pending.card.points} من كارت ${pending.card.title}`);
+    toast(`✅ +${pending.card.points} نقطة`);
   } else if (!done) {
-    addLog('points-minus', `${g.name} لم ينفذ كارت ${p.card.title}`);
+    addLog('points-minus', `${g.name} لم ينفذ كارت ${pending.card.title}`);
     toast('❌ لم يُنفذ');
   }
   
-  // حذف الكارت بعد التنفيذ
-  localStorage.removeItem('pendingCard_' + currentUser.groupId);
-  save();
+  delete DB.pendingCards[currentUser.groupId];
+  await save();
   loadLeader();
-  renderLeaderCard();
-}
-
-// polling عشان القائد يشوف الكروت الجديدة تلقائياً
-function startLeaderPolling() {
-  if (pollInterval) clearInterval(pollInterval);
-  pollInterval = setInterval(() => {
-    if (currentUser && currentUser.role === 'leader') {
-      const area = document.getElementById('leaderCardArea');
-      if (area) renderLeaderCard();
-      // تحديث النقاط
-      const g = DB.groups.find(x => x.id === currentUser.groupId);
-      if (g) {
-        document.getElementById('leaderScore').innerText = g.score;
-      }
-    }
-  }, 2000);
 }
 
 // ============ الطالب ============
@@ -1272,11 +1169,11 @@ function renderStudentLeaderboard(type) {
       document.getElementById('studentLeaderboard').innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><p>اختر فصلاً</p></div>';
       return;
     }
-    const sorted = DB.groups.filter(g => g.classId == classId).sort((a,b) => b.score - a.score);
+    const sorted = DB.groups.filter(g => g.classId == classId).sort((a,b) => (b.score||0) - (a.score||0));
     renderLeaderboardList(sorted, 'studentLeaderboard');
   } else {
     filter.style.display = 'none';
-    const sorted = [...DB.groups].sort((a,b) => b.score - a.score);
+    const sorted = [...DB.groups].sort((a,b) => (b.score||0) - (a.score||0));
     renderLeaderboardList(sorted, 'studentLeaderboard');
   }
 }
@@ -1290,9 +1187,9 @@ function closeModal() {
   document.getElementById('modalBg').classList.remove('show');
 }
 
-function toast(msg) {
+function toast(msg, type='ok') {
   const t = document.createElement('div');
-  t.className = 'toast';
+  t.className = 'toast ' + (type === 'err' ? 'err' : '');
   t.innerHTML = msg;
   document.body.appendChild(t);
   setTimeout(() => t.remove(), 2500);
@@ -1302,12 +1199,8 @@ document.getElementById('modalBg').addEventListener('click', e => {
   if (e.target.id === 'modalBg') closeModal();
 });
 
-// الاستماع لتغييرات localStorage (لما المدرس يبعت كارت)
-window.addEventListener('storage', (e) => {
-  if (e.key && e.key.startsWith('pendingCard_') && currentUser && currentUser.role === 'leader') {
-    renderLeaderCard();
-  }
-});
+// ============ بدء التطبيق ============
+initApp();
 </script>
 </body>
 </html>
