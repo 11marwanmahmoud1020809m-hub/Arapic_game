@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌟 لعبة الضاد - مستر أحمد رميح</title>
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/tajawal@5.0.0/index.css" rel="stylesheet">
+<style>
+:root {
+  --primary: #46178f; --primary-light: #7b2cbf; --accent: #ffd60a;
+  --success: #06a77d; --danger: #e63946; --info: #457b9d;
+  --dark: #1a0933; --warning: #ff9500;
+}
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Tajawal',sans-serif; }
+body {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+  min-height:100vh; color:#fff; overflow-x:hidden;
+}
+
+.logo { display:flex; align-items:center; justify-content:center; gap:15px; margin:20px 0; }
+.logo-icon {
+  width:80px; height:80px; background:linear-gradient(135deg, var(--accent), var(--warning));
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:3em; color:var(--primary); font-weight:900;
+  box-shadow:0 10px 30px rgba(255,214,10,.4); border:4px solid rgba(255,255,255,.3);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.05);} }
+.logo-text h1 { font-size:2.5em; color:var(--accent); text-shadow:3px 3px 10px rgba(0,0,0,.5); }
+.logo-text p { font-size:1em; opacity:.9; }
+
+.screen { display:none; padding:20px; max-width:1400px; margin:0 auto; animation:fadeIn .5s; }
+.screen.active { display:block; }
+@keyframes fadeIn { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+h1,h2,h3 { text-align:center; margin:15px 0; text-shadow:2px 2px 8px rgba(0,0,0,.3); }
+h1 { font-size:2.2em; color:var(--accent); }
+h2 { font-size:1.6em; }
+
+.btn {
+  background:var(--accent); color:var(--primary); border:none; padding:12px 24px;
+  font-size:1em; font-weight:bold; border-radius:12px; cursor:pointer; margin:5px;
+  transition:all .2s; box-shadow:0 4px 0 #b8860b;
+  display:inline-flex; align-items:center; gap:8px; font-family:inherit;
+}
+.btn:hover { transform:translateY(-2px); box-shadow:0 6px 0 #b8860b; }
+.btn:active { transform:translateY(2px); box-shadow:0 2px 0 #b8860b; }
+.btn-danger { background:var(--danger); color:#fff; box-shadow:0 4px 0 #9d0208; }
+.btn-success { background:var(--success); color:#fff; box-shadow:0 4px 0 #005f73; }
+.btn-info { background:var(--info); color:#fff; box-shadow:0 4px 0 #2a4d6d; }
+.btn-warning { background:var(--warning); color:#fff; box-shadow:0 4px 0 #cc7700; }
+.btn-secondary { background:#6c757d; color:#fff; box-shadow:0 4px 0 #495057; }
+.btn-sm { padding:8px 15px; font-size:.9em; }
+.btn-lg { padding:16px 32px; font-size:1.2em; }
+
+.card {
+  background:rgba(255,255,255,.12); backdrop-filter:blur(10px);
+  border-radius:18px; padding:25px; margin:15px 0;
+  border:2px solid rgba(255,255,255,.2); box-shadow:0 8px 32px rgba(0,0,0,.2);
+}
+input,select,textarea {
+  width:100%; padding:12px; margin:8px 0; border-radius:10px;
+  border:2px solid rgba(255,255,255,.3); background:rgba(255,255,255,.95);
+  color:#333; font-size:1em; font-family:inherit;
+}
+input:focus,textarea:focus,select:focus { outline:none; border-color:var(--accent); }
+
+.login-box { max-width:500px; margin:30px auto; text-align:center; }
+.role-btn { display:flex; align-items:center; justify-content:center; gap:15px; width:100%; margin:12px 0; font-size:1.2em; padding:20px; }
+.role-btn .icon { font-size:2em; }
+
+.topbar {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:15px 20px; background:rgba(0,0,0,.3); border-radius:15px;
+  margin-bottom:20px; flex-wrap:wrap; gap:10px; backdrop-filter:blur(10px);
+}
+.topbar .user-info { display:flex; align-items:center; gap:10px; font-size:1.1em; font-weight:bold; }
+.topbar .avatar {
+  width:45px; height:45px; border-radius:50%;
+  background:linear-gradient(135deg, var(--accent), var(--warning));
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.5em; color:var(--primary);
+}
+
+.tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; background:rgba(0,0,0,.2); padding:10px; border-radius:15px; }
+.tab {
+  padding:10px 16px; background:rgba(255,255,255,.1); border-radius:10px;
+  cursor:pointer; border:2px solid transparent; transition:all .2s;
+  display:flex; align-items:center; gap:6px; font-weight:bold; font-size:.95em;
+}
+.tab:hover { background:rgba(255,255,255,.2); }
+.tab.active { background:var(--accent); color:var(--primary); border-color:#fff; }
+
+.grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:15px; }
+.grid-2 { display:grid; grid-template-columns:repeat(auto-fill, minmax(350px, 1fr)); gap:15px; }
+
+.group-card {
+  background:linear-gradient(135deg, rgba(255,255,255,.2), rgba(255,255,255,.05));
+  border-radius:15px; padding:20px; transition:all .3s; border:2px solid transparent;
+  position:relative; overflow:hidden;
+}
+.group-card:hover { transform:translateY(-5px); border-color:var(--accent); }
+.group-card.crown {
+  background:linear-gradient(135deg, var(--accent), var(--warning));
+  color:var(--primary); box-shadow:0 10px 30px rgba(255,214,10,.4);
+}
+.group-card .crown-badge { position:absolute; top:10px; left:10px; font-size:2em; animation:bounce 1s infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);} }
+.group-card .group-name { font-size:1.3em; font-weight:bold; margin-bottom:10px; }
+.group-card .group-info { display:flex; gap:8px; flex-wrap:wrap; margin:10px 0; font-size:.85em; }
+.group-card .group-info span { background:rgba(0,0,0,.2); padding:4px 10px; border-radius:20px; }
+.group-card.crown .group-info span { background:rgba(0,0,0,.15); }
+.group-card .group-score { font-size:2.5em; font-weight:900; text-align:center; color:var(--accent); margin:15px 0; }
+.group-card.crown .group-score { color:var(--primary); }
+.group-card .actions { display:flex; gap:5px; justify-content:center; margin-top:10px; flex-wrap:wrap; }
+
+.class-card {
+  background:linear-gradient(135deg, rgba(69,123,157,.3), rgba(69,123,157,.1));
+  border-radius:15px; padding:20px; border:2px solid rgba(255,255,255,.2); transition:all .3s;
+}
+.class-card:hover { transform:translateY(-3px); border-color:var(--accent); }
+.class-card .class-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; padding-bottom:10px; border-bottom:2px solid rgba(255,255,255,.2); }
+.class-card .class-name { font-size:1.3em; font-weight:bold; display:flex; align-items:center; gap:10px; }
+.class-card .class-stats { display:flex; gap:15px; justify-content:space-around; background:rgba(0,0,0,.2); padding:10px; border-radius:10px; margin:10px 0; }
+.class-card .stat { text-align:center; }
+.class-card .stat-value { font-size:1.5em; font-weight:bold; color:var(--accent); }
+.class-card .stat-label { font-size:.85em; opacity:.8; }
+
+.wheel-container { position:relative; width:340px; height:340px; margin:20px auto; }
+.wheel {
+  width:100%; height:100%; border-radius:50%; border:10px solid var(--accent);
+  position:relative; transition:transform 5s cubic-bezier(.17,.67,.21,.99);
+  box-shadow:0 0 50px rgba(255,214,10,.5), inset 0 0 30px rgba(0,0,0,.3);
+}
+.wheel-pointer { position:absolute; top:-25px; left:50%; transform:translateX(-50%); font-size:3em; z-index:10; filter:drop-shadow(0 3px 5px rgba(0,0,0,.5)); }
+.wheel-center {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:60px; height:60px; border-radius:50%;
+  background:linear-gradient(135deg, var(--accent), var(--warning));
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.5em; color:var(--primary); font-weight:900;
+  box-shadow:0 5px 15px rgba(0,0,0,.3); z-index:5;
+}
+
+.revealed-card {
+  background:linear-gradient(135deg, var(--accent), var(--warning));
+  color:var(--primary); border-radius:25px; padding:30px; margin:20px auto;
+  max-width:500px; text-align:center; box-shadow:0 20px 50px rgba(0,0,0,.4);
+  border:4px solid rgba(255,255,255,.3); position:relative; overflow:hidden;
+}
+.revealed-card.show { animation:cardReveal .8s; }
+@keyframes cardReveal {
+  0% { transform:scale(0) rotate(180deg); opacity:0; }
+  50% { transform:scale(1.1) rotate(0); }
+  100% { transform:scale(1) rotate(0); opacity:1; }
+}
+.revealed-card .card-type { font-size:.9em; background:rgba(0,0,0,.2); padding:5px 15px; border-radius:20px; display:inline-block; margin-bottom:15px; }
+.revealed-card .card-title { font-size:1.8em; font-weight:900; margin:10px 0; }
+.revealed-card .card-desc { font-size:1.1em; margin:15px 0; line-height:1.6; }
+.revealed-card .card-points { font-size:1.5em; font-weight:bold; margin-top:15px; }
+
+.score-display { font-size:3.5em; text-align:center; color:var(--accent); margin:20px 0; text-shadow:3px 3px 10px rgba(0,0,0,.5); font-weight:900; }
+
+.question-item {
+  background:rgba(255,255,255,.1); padding:18px; border-radius:12px;
+  margin:10px 0; border-right:5px solid var(--accent);
+}
+.question-item .q-text { font-size:1.1em; font-weight:bold; margin-bottom:10px; }
+.question-item .q-options { display:flex; flex-wrap:wrap; gap:8px; }
+.question-item .q-option { background:rgba(255,255,255,.15); padding:6px 12px; border-radius:8px; font-size:.9em; }
+.question-item .q-option.correct { background:var(--success); }
+.question-item .q-points { display:inline-block; background:var(--accent); color:var(--primary); padding:3px 10px; border-radius:15px; font-size:.85em; font-weight:bold; margin-top:8px; }
+
+.points-row { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:15px 0; }
+.points-btn {
+  padding:12px 20px; border-radius:12px; border:none; font-weight:bold;
+  cursor:pointer; font-size:1em; transition:all .2s;
+  display:flex; align-items:center; gap:5px; box-shadow:0 3px 0 rgba(0,0,0,.2);
+  font-family:inherit;
+}
+.points-btn.plus { background:var(--success); color:#fff; }
+.points-btn.minus { background:var(--danger); color:#fff; }
+.points-btn:hover { transform:scale(1.05); }
+
+.leaderboard { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:15px; }
+.lb-item {
+  background:rgba(255,255,255,.15); padding:20px; border-radius:15px;
+  text-align:center; position:relative; transition:all .3s; border:2px solid transparent;
+}
+.lb-item:hover { transform:translateY(-3px); border-color:var(--accent); }
+.lb-item.first { background:linear-gradient(135deg, var(--accent), var(--warning)); color:var(--primary); box-shadow:0 10px 30px rgba(255,214,10,.4); }
+.lb-item.second { background:linear-gradient(135deg, #c0c0c0, #a8a8a8); color:#333; }
+.lb-item.third { background:linear-gradient(135deg, #cd7f32, #b87333); color:#fff; }
+.lb-item .rank { font-size:2.5em; margin-bottom:5px; }
+.lb-item .name { font-size:1.2em; font-weight:bold; margin:5px 0; }
+.lb-item .class-tag { display:inline-block; background:rgba(0,0,0,.2); padding:3px 10px; border-radius:15px; font-size:.8em; margin:5px 0; }
+.lb-item .score { font-size:2em; color:var(--accent); margin-top:5px; font-weight:900; }
+.lb-item.first .score { color:var(--primary); }
+.lb-item.second .score { color:#333; }
+
+.modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85); z-index:100; justify-content:center; align-items:center; padding:20px; backdrop-filter:blur(8px); overflow-y:auto; }
+.modal-bg.show { display:flex; }
+.modal {
+  background:linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius:20px; padding:30px; max-width:600px; width:100%;
+  max-height:90vh; overflow-y:auto; border:3px solid var(--accent);
+  box-shadow:0 20px 60px rgba(0,0,0,.5); margin:auto;
+}
+
+.toast {
+  position:fixed; top:20px; left:50%; transform:translateX(-50%);
+  background:var(--success); color:#fff; padding:15px 30px;
+  border-radius:12px; z-index:200; font-weight:bold;
+  box-shadow:0 10px 30px rgba(0,0,0,.3); animation:slideDown .3s;
+  display:flex; align-items:center; gap:10px; font-size:1.1em;
+}
+@keyframes slideDown { from{transform:translate(-50%,-100px); opacity:0;} to{transform:translate(-50%,0); opacity:1;} }
+
+.flex-row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.flex-row > * { flex:1; min-width:150px; }
+.flex-center { display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:wrap; }
+
+.badge { display:inline-block; padding:5px 12px; border-radius:20px; font-size:.85em; font-weight:bold; margin:3px; }
+.badge-crown { background:var(--accent); color:var(--primary); }
+.badge-info { background:var(--info); color:#fff; }
+.badge-success { background:var(--success); color:#fff; }
+.badge-warning { background:var(--warning); color:#fff; }
+
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:15px; margin:20px 0; }
+.stat-box { background:rgba(255,255,255,.1); padding:20px; border-radius:15px; text-align:center; border:2px solid rgba(255,255,255,.2); }
+.stat-box .stat-icon { font-size:2.5em; margin-bottom:10px; }
+.stat-box .stat-value { font-size:2em; font-weight:900; color:var(--accent); }
+.stat-box .stat-label { font-size:.9em; opacity:.8; margin-top:5px; }
+
+.log-item {
+  background:rgba(255,255,255,.08); padding:12px 18px; border-radius:10px;
+  margin:8px 0; display:flex; align-items:center; gap:12px;
+  border-right:4px solid var(--accent);
+}
+.log-item .log-icon { font-size:1.5em; }
+.log-item .log-content { flex:1; }
+.log-item .log-time { font-size:.8em; opacity:.7; }
+.log-item.points-plus { border-color:var(--success); }
+.log-item.points-minus { border-color:var(--danger); }
+.log-item.card-draw { border-color:var(--warning); }
+
+/* ===== شاشة انتظار الكارت للقائد ===== */
+.waiting-card {
+  background:rgba(255,255,255,.05); border:3px dashed rgba(255,214,10,.4);
+  border-radius:20px; padding:40px 20px; text-align:center; margin:20px 0;
+}
+.waiting-card .wait-icon { font-size:4em; margin-bottom:15px; animation:waitPulse 2s infinite; }
+@keyframes waitPulse { 0%,100%{transform:scale(1); opacity:.6;} 50%{transform:scale(1.1); opacity:1;} }
+
+.new-card-alert {
+  background:linear-gradient(135deg, var(--accent), var(--warning));
+  color:var(--primary); border-radius:20px; padding:25px; margin:20px 0;
+  text-align:center; animation:alertPop .5s, alertGlow 1.5s infinite;
+  box-shadow:0 10px 40px rgba(255,214,10,.5);
+}
+@keyframes alertPop { 0%{transform:scale(0); opacity:0;} 100%{transform:scale(1); opacity:1;} }
+@keyframes alertGlow {
+  0%,100%{box-shadow:0 10px 40px rgba(255,214,10,.5);}
+  50%{box-shadow:0 10px 60px rgba(255,214,10,.8), 0 0 80px rgba(255,214,10,.4);}
+}
+
+@media (max-width:768px) {
+  h1 { font-size:1.8em; }
+  .logo-icon { width:60px; height:60px; font-size:2.2em; }
+  .score-display { font-size:2.5em; }
+  .wheel-container { width:280px; height:280px; }
+  .tab { padding:8px 12px; font-size:.85em; }
+  .btn { padding:10px 18px; font-size:.95em; }
+}
+
+.glow { animation:glow 2s ease-in-out infinite alternate; }
+@keyframes glow { from{box-shadow:0 0 10px var(--accent);} to{box-shadow:0 0 25px var(--accent), 0 0 40px var(--accent);} }
+.empty-state { text-align:center; padding:40px 20px; opacity:.7; }
+.empty-state .empty-icon { font-size:4em; margin-bottom:15px; }
+</style>
+</head>
+<body>
+
+<!-- ========== شاشة تسجيل الدخول ========== -->
+<div id="loginScreen" class="screen active">
+  <div class="login-box">
+    <div class="logo">
+      <div class="logo-icon">ض</div>
+      <div class="logo-text">
+        <h1>🌟 لعبة الضاد 🌟</h1>
+        <p>✨ مستر أحمد رميح - مدرس اللغة العربية ✨</p>
+      </div>
+    </div>
+    <div class="card">
+      <h2>🎮 اختر نوع الدخول</h2>
+      <button class="btn role-btn" onclick="showLogin('teacher')">
+        <span class="icon">👨‍🏫</span><span>دخول المدرس</span>
+      </button>
+      <button class="btn role-btn btn-success" onclick="showLogin('leader')">
+        <span class="icon">👑</span><span>دخول قائد الفريق</span>
+      </button>
+      <button class="btn role-btn btn-info" onclick="showLogin('student')">
+        <span class="icon">🎓</span><span>دخول الطالب</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== شاشة المصادقة ========== -->
+<div id="authScreen" class="screen">
+  <div class="login-box">
+    <div class="logo"><div class="logo-icon">ض</div></div>
+    <h1 id="authTitle">🔐 تسجيل الدخول</h1>
+    <div class="card">
+      <input type="text" id="authUser" placeholder="👤 اسم المستخدم">
+      <input type="password" id="authPass" placeholder="🔑 كلمة المرور">
+      <div class="flex-center">
+        <button class="btn" onclick="doLogin()">🚀 دخول</button>
+        <button class="btn btn-secondary" onclick="backToLogin()">🔙 رجوع</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== لوحة المدرس ========== -->
+<div id="teacherScreen" class="screen">
+  <div class="topbar">
+    <div class="user-info">
+      <div class="avatar">👨‍🏫</div>
+      <div>
+        <div style="font-size:1.2em">مستر أحمد رميح</div>
+        <div style="font-size:.85em; opacity:.8">مدرس اللغة العربية</div>
+      </div>
+    </div>
+    <button class="btn btn-danger btn-sm" onclick="logout()">🚪 خروج</button>
+  </div>
+
+  <div class="stats-grid" id="teacherStats"></div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('classes', event)"><span>🏫</span> الفصول</div>
+    <div class="tab" onclick="switchTab('groups', event)"><span>👥</span> المجموعات</div>
+    <div class="tab" onclick="switchTab('questions', event)"><span>❓</span> الأسئلة</div>
+    <div class="tab" onclick="switchTab('cards', event)"><span>🎴</span> الكروت</div>
+    <div class="tab" onclick="switchTab('draw', event)"><span>🎯</span> سحب الكروت</div>
+    <div class="tab" onclick="switchTab('points', event)"><span>💎</span> النقاط</div>
+    <div class="tab" onclick="switchTab('log', event)"><span>📜</span> السجل</div>
+    <div class="tab" onclick="switchTab('leaderboard', event)"><span>🏆</span> الترتيب</div>
+  </div>
+
+  <!-- تبويب الفصول -->
+  <div id="tab-classes" class="tab-content">
+    <div class="card">
+      <h2>🏫 إدارة الفصول</h2>
+      <div class="flex-row">
+        <input type="text" id="newClassName" placeholder="✏️ اسم الفصل (مثال: الصف الأول أ)">
+        <button class="btn btn-success" onclick="addClass()">➕ إضافة</button>
+      </div>
+    </div>
+    <div id="classesList" class="grid-2"></div>
+  </div>
+
+  <!-- تبويب المجموعات -->
+  <div id="tab-groups" class="tab-content" style="display:none">
+    <div class="card">
+      <h2>👥 المجموعات</h2>
+      <div class="flex-row">
+        <select id="groupClassFilter" onchange="renderGroups()">
+          <option value="">📚 كل الفصول</option>
+        </select>
+        <button class="btn btn-success" onclick="showAddGroupModal()">➕ مجموعة جديدة</button>
+      </div>
+    </div>
+    <div id="groupsList" class="grid"></div>
+  </div>
+
+  <!-- تبويب الأسئلة -->
+  <div id="tab-questions" class="tab-content" style="display:none">
+    <div class="card">
+      <h2>❓ إضافة سؤال</h2>
+      <input type="text" id="qText" placeholder="✏️ نص السؤال">
+      <input type="text" class="q-option-input" placeholder="🅰️ الخيار الأول">
+      <input type="text" class="q-option-input" placeholder="🅱️ الخيار الثاني">
+      <input type="text" class="q-option-input" placeholder="🅲️ الخيار الثالث">
+      <input type="text" class="q-option-input" placeholder="🅳️ الخيار الرابع">
+      <div class="flex-row">
+        <select id="qCorrect">
+          <option value="0">✅ الأول</option>
+          <option value="1">✅ الثاني</option>
+          <option value="2">✅ الثالث</option>
+          <option value="3">✅ الرابع</option>
+        </select>
+        <input type="number" id="qPoints" placeholder="💎 النقاط" value="10">
+      </div>
+      <button class="btn btn-success" onclick="addQuestion()">➕ إضافة السؤال</button>
+    </div>
+    <div id="questionsList"></div>
+  </div>
+
+  <!-- تبويب الكروت -->
+  <div id="tab-cards" class="tab-content" style="display:none">
+    <div class="card">
+      <h2>🎴 إدارة الكروت</h2>
+      <label>📝 نوع الكارت:</label>
+      <select id="cardType">
+        <option value="question">❓ سؤال</option>
+        <option value="bonus">🎁 بونص نقاط</option>
+        <option value="challenge">⚔️ تحدي</option>
+        <option value="trap">⚠️ فخ / ماينص</option>
+        <option value="special">✨ خاص</option>
+      </select>
+      <input type="text" id="cardTitle" placeholder="✏️ عنوان الكارت">
+      <textarea id="cardDesc" rows="3" placeholder="📝 شرح الكارت / فائدته"></textarea>
+      <input type="number" id="cardPoints" placeholder="💎 النقاط (اختياري)">
+      <button class="btn btn-success" onclick="addCard()">➕ إضافة كارت</button>
+    </div>
+    <div id="cardsList"></div>
+  </div>
+
+  <!-- تبويب سحب الكروت -->
+  <div id="tab-draw" class="tab-content" style="display:none">
+    <div class="card" style="text-align:center">
+      <h2>🎯 سحب الكروت</h2>
+      <p style="opacity:.8; margin-bottom:20px">
+        المستر يلف العجلة ← يختار المجموعة ← القائد يشوف الكارت على موبايله
+      </p>
+      
+      <div id="drawStep1">
+        <h3>🎡 لف العجلة</h3>
+        <div class="wheel-container">
+          <div class="wheel-pointer">🔻</div>
+          <div class="wheel" id="drawWheel"></div>
+          <div class="wheel-center">ض</div>
+        </div>
+        <button class="btn btn-lg glow" onclick="spinDrawWheel()">🎯 لف العجلة</button>
+      </div>
+
+      <div id="drawStep2" style="display:none">
+        <h3>👥 اختر المجموعة</h3>
+        <div class="revealed-card" style="background:linear-gradient(135deg, #6c757d, #495057); color:#fff">
+          <div class="card-type" id="pendingType">🎴 كارت</div>
+          <div class="card-title">🔒 الكارت مقفل</div>
+          <div class="card-desc">اختر المجموعة اللي هتبعتلها الكارت ده</div>
+        </div>
+        <select id="drawGroupSelect" style="max-width:400px; margin:0 auto; display:block"></select>
+        <div class="flex-center" style="margin-top:15px">
+          <button class="btn btn-success btn-lg" onclick="sendCardToGroup()">📤 إرسال للقائد</button>
+          <button class="btn btn-secondary" onclick="resetDraw()">🔄 إعادة</button>
+        </div>
+      </div>
+
+      <div id="drawStep3" style="display:none">
+        <h3>📤 تم الإرسال!</h3>
+        <div class="card" style="max-width:500px; margin:0 auto">
+          <div style="font-size:4em; margin:15px 0">✅</div>
+          <p style="font-size:1.2em; margin-bottom:10px">
+            تم إرسال الكارت لـ <strong id="sentGroupName" style="color:var(--accent)"></strong>
+          </p>
+          <p style="opacity:.8; margin-bottom:20px">
+            القائد هيشوف الكارت على موبايله دلوقتي
+          </p>
+          <div class="flex-center">
+            <button class="btn btn-lg" onclick="resetDraw()">🎯 سحب كارت تاني</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- تبويب النقاط -->
+  <div id="tab-points" class="tab-content" style="display:none">
+    <div class="card">
+      <h2>💎 إضافة / خصم نقاط</h2>
+      <label>🏫 الفصل:</label>
+      <select id="pointsClass" onchange="updatePointsGroups()"></select>
+      <label>👥 المجموعة:</label>
+      <select id="pointsGroup" onchange="showCurrentScore()"></select>
+      <div class="score-display" id="currentScore">0</div>
+      <h3>🎁 بونص (+)</h3>
+      <div class="points-row" id="plusRow"></div>
+      <h3>⚠️ ماينص (-)</h3>
+      <div class="points-row" id="minusRow"></div>
+      <h3>🔢 رقم مخصص</h3>
+      <div class="flex-row">
+        <input type="number" id="customPoints" placeholder="💎 الرقم">
+        <button class="btn btn-success" onclick="addCustomPoints(1)">➕ إضافة</button>
+        <button class="btn btn-danger" onclick="addCustomPoints(-1)">➖ خصم</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- تبويب السجل -->
+  <div id="tab-log" class="tab-content" style="display:none">
+    <div class="card">
+      <h2>📜 سجل الأحداث</h2>
+      <div class="flex-center" style="margin-bottom:15px">
+        <button class="btn btn-danger btn-sm" onclick="clearLog()">🗑️ مسح السجل</button>
+      </div>
+    </div>
+    <div id="logList"></div>
+  </div>
+
+  <!-- تبويب الترتيب -->
+  <div id="tab-leaderboard" class="tab-content" style="display:none">
+    <div class="card">
+      <h2>🏆 الترتيب</h2>
+      <div class="flex-center" style="margin-bottom:20px">
+        <button class="btn" onclick="renderLeaderboard('school')">🏫 المدرسة</button>
+        <button class="btn btn-info" onclick="renderLeaderboard('class')">📚 الفصل</button>
+      </div>
+      <select id="lbClassFilter" onchange="renderLeaderboard('class')" style="display:none; margin-bottom:15px"></select>
+      <div id="leaderboardList" class="leaderboard"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== شاشة القائد ========== -->
+<div id="leaderScreen" class="screen">
+  <div class="topbar">
+    <div class="user-info">
+      <div class="avatar">👑</div>
+      <div>
+        <div style="font-size:1.2em">قائد: <span id="leaderName"></span></div>
+        <div style="font-size:.85em; opacity:.8" id="leaderGroupInfo"></div>
+      </div>
+    </div>
+    <button class="btn btn-danger btn-sm" onclick="logout()">🚪 خروج</button>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchLeaderTab('card', event)"><span>🎴</span> الكارت السري</div>
+    <div class="tab" onclick="switchLeaderTab('info', event)"><span>💎</span> نقاطي</div>
+  </div>
+
+  <!-- تبويب الكارت السري -->
+  <div id="leaderTab-card">
+    <div id="leaderCardArea"></div>
+  </div>
+
+  <!-- تبويب النقاط -->
+  <div id="leaderTab-info" style="display:none">
+    <div class="card" style="text-align:center">
+      <h2>💎 نقاط فريقك</h2>
+      <div class="score-display" id="leaderScore">0</div>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-icon">📚</div>
+          <div class="stat-value" id="leaderClassRank">-</div>
+          <div class="stat-label">ترتيبك في الفصل</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">🏫</div>
+          <div class="stat-value" id="leaderSchoolRank">-</div>
+          <div class="stat-label">ترتيبك في المدرسة</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== شاشة الطالب ========== -->
+<div id="studentScreen" class="screen">
+  <div class="topbar">
+    <div class="user-info">
+      <div class="avatar">🎓</div>
+      <div>
+        <div style="font-size:1.2em">طالب: <span id="studentName"></span></div>
+        <div style="font-size:.85em; opacity:.8">مشاهدة الترتيب</div>
+      </div>
+    </div>
+    <button class="btn btn-danger btn-sm" onclick="logout()">🚪 خروج</button>
+  </div>
+
+  <div class="card">
+    <h2>🏆 الترتيب</h2>
+    <div class="flex-center" style="margin-bottom:20px">
+      <button class="btn" onclick="renderStudentLeaderboard('school')">🏫 المدرسة</button>
+      <button class="btn btn-info" onclick="renderStudentLeaderboard('class')">📚 الفصل</button>
+    </div>
+    <select id="studentClassFilter" onchange="renderStudentLeaderboard('class')" style="display:none; margin-bottom:15px"></select>
+    <div id="studentLeaderboard" class="leaderboard"></div>
+  </div>
+</div>
+
+<!-- ========== المودال ========== -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+// ============ قاعدة البيانات ============
+let DB = JSON.parse(localStorage.getItem('dhadGameDB_v3')) || {
+  classes: [], groups: [], questions: [], cards: [],
+  teachers: [{user:'ahmed', pass:'1234'}],
+  plusValues: [10, 20, 50, 100, 200],
+  minusValues: [10, 20, 50, 100, 200],
+  log: []
+};
+
+let currentUser = null;
+let currentAuthRole = null;
+let currentDraw = { card:null, group:null };
+let lastCardId = null;
+let pollInterval = null;
+
+function save() { localStorage.setItem('dhadGameDB_v3', JSON.stringify(DB)); }
+
+// ============ التنقل ============
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function backToLogin() { showScreen('loginScreen'); }
+function logout() {
+  currentUser = null;
+  if (pollInterval) clearInterval(pollInterval);
+  showScreen('loginScreen');
+}
+
+// ============ تسجيل الدخول ============
+function showLogin(role) {
+  currentAuthRole = role;
+  const titles = {teacher:'👨‍🏫 دخول المدرس', leader:'👑 دخول قائد الفريق', student:'🎓 دخول الطالب'};
+  document.getElementById('authTitle').innerText = titles[role];
+  document.getElementById('authUser').placeholder = role === 'teacher' ? '👤 اسم المستخدم' : '👤 اسم الفريق';
+  document.getElementById('authUser').value = role === 'teacher' ? 'ahmed' : '';
+  document.getElementById('authPass').value = '';
+  showScreen('authScreen');
+}
+
+function doLogin() {
+  const u = document.getElementById('authUser').value.trim();
+  const p = document.getElementById('authPass').value.trim();
+  if (!u || !p) return toast('❌ أدخل البيانات كاملة');
+
+  if (currentAuthRole === 'teacher') {
+    const t = DB.teachers.find(x => x.user === u && x.pass === p);
+    if (!t) return toast('❌ بيانات المدرس غلط');
+    currentUser = {role:'teacher', name:u};
+    loadTeacher();
+    showScreen('teacherScreen');
+  } else if (currentAuthRole === 'leader') {
+    const g = DB.groups.find(x => x.name === u && x.password === p);
+    if (!g) return toast('❌ اسم الفريق أو كلمة المرور غلط');
+    currentUser = {role:'leader', name:u, groupId:g.id};
+    loadLeader();
+    showScreen('leaderScreen');
+    startLeaderPolling();
+  } else {
+    if (p !== 'student') return toast('❌ كلمة مرور الطالب: student');
+    currentUser = {role:'student', name:u};
+    loadStudent();
+    showScreen('studentScreen');
+  }
+}
+
+// ============ المدرس ============
+function loadTeacher() {
+  renderTeacherStats(); renderClasses(); renderGroups(); renderQuestions();
+  renderCards(); renderDrawWheel(); updatePointsView(); renderLog();
+  renderLeaderboard('school'); updateClassFilters();
+}
+
+function switchTab(name, e) {
+  document.querySelectorAll('#teacherScreen .tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#teacherScreen .tab-content').forEach(t => t.style.display = 'none');
+  e.currentTarget.classList.add('active');
+  document.getElementById('tab-'+name).style.display = 'block';
+  if (name === 'leaderboard') renderLeaderboard('school');
+  if (name === 'points') updatePointsView();
+  if (name === 'groups') renderGroups();
+  if (name === 'draw') resetDraw();
+  if (name === 'log') renderLog();
+}
+
+function renderTeacherStats() {
+  const totalScore = DB.groups.reduce((s,g) => s + g.score, 0);
+  document.getElementById('teacherStats').innerHTML = `
+    <div class="stat-box"><div class="stat-icon">🏫</div><div class="stat-value">${DB.classes.length}</div><div class="stat-label">الفصول</div></div>
+    <div class="stat-box"><div class="stat-icon">👥</div><div class="stat-value">${DB.groups.length}</div><div class="stat-label">المجموعات</div></div>
+    <div class="stat-box"><div class="stat-icon">❓</div><div class="stat-value">${DB.questions.length}</div><div class="stat-label">الأسئلة</div></div>
+    <div class="stat-box"><div class="stat-icon">🎴</div><div class="stat-value">${DB.cards.length}</div><div class="stat-label">الكروت</div></div>
+    <div class="stat-box"><div class="stat-icon">💎</div><div class="stat-value">${totalScore}</div><div class="stat-label">إجمالي النقاط</div></div>
+  `;
+}
+
+// -- الفصول --
+function addClass() {
+  const name = document.getElementById('newClassName').value.trim();
+  if (!name) return toast('❌ أدخل اسم الفصل');
+  if (DB.classes.find(c => c.name === name)) return toast('❌ الفصل موجود');
+  DB.classes.push({id: Date.now(), name});
+  save();
+  document.getElementById('newClassName').value = '';
+  renderClasses(); renderTeacherStats(); updateClassFilters();
+  toast('✅ تم إضافة الفصل');
+}
+
+function renderClasses() {
+  const list = document.getElementById('classesList');
+  if (!DB.classes.length) {
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">🏫</div><p>لا توجد فصول بعد</p></div>';
+    return;
+  }
+  list.innerHTML = DB.classes.map(c => {
+    const groups = DB.groups.filter(g => g.classId === c.id);
+    const totalScore = groups.reduce((s,g) => s + g.score, 0);
+    const topGroup = groups.length ? groups.reduce((a,b) => a.score > b.score ? a : b) : null;
+    return `
+      <div class="class-card">
+        <div class="class-header">
+          <div class="class-name"><span>🏫</span><span>${c.name}</span></div>
+          <button class="btn btn-danger btn-sm" onclick="deleteClass(${c.id})">🗑️</button>
+        </div>
+        <div class="class-stats">
+          <div class="stat"><div class="stat-value">${groups.length}</div><div class="stat-label">👥 المجموعات</div></div>
+          <div class="stat"><div class="stat-value">${totalScore}</div><div class="stat-label">💎 النقاط</div></div>
+        </div>
+        ${topGroup && topGroup.score > 0 ? `<div style="text-align:center; margin-top:10px"><span class="badge badge-crown">👑 الأعلى: ${topGroup.name}</span></div>` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function deleteClass(id) {
+  if (!confirm('⚠️ حذف الفصل وجميع مجموعاته؟')) return;
+  DB.classes = DB.classes.filter(c => c.id !== id);
+  DB.groups = DB.groups.filter(g => g.classId !== id);
+  save(); renderClasses(); renderGroups(); renderTeacherStats(); updateClassFilters();
+  toast('✅ تم الحذف');
+}
+
+// -- المجموعات --
+function updateClassFilters() {
+  const opts = DB.classes.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+  document.getElementById('groupClassFilter').innerHTML = '<option value="">📚 كل الفصول</option>' + opts;
+  const pc = document.getElementById('pointsClass');
+  if (pc) pc.innerHTML = '<option value="">📚 اختر الفصل</option>' + opts;
+  const lb = document.getElementById('lbClassFilter');
+  if (lb) lb.innerHTML = '<option value="">📚 اختر الفصل</option>' + opts;
+  const sf = document.getElementById('studentClassFilter');
+  if (sf) sf.innerHTML = '<option value="">📚 اختر الفصل</option>' + opts;
+}
+
+function showAddGroupModal() {
+  if (!DB.classes.length) return toast('❌ أضف فصلاً أولاً');
+  showModal(`
+    <h2>➕ مجموعة جديدة</h2>
+    <label>🏫 الفصل:</label>
+    <select id="mgClass">${DB.classes.map(c => `<option value="${c.id}">${c.name}</option>`).join('')}</select>
+    <label>👥 اسم المجموعة:</label>
+    <input type="text" id="mgName" placeholder="مثال: مجموعة النجوم">
+    <label>🔢 رقم المجموعة:</label>
+    <input type="number" id="mgNumber" placeholder="مثال: 1" value="1">
+    <label>🔑 كلمة مرور القائد (خاصة بالمجموعة):</label>
+    <input type="text" id="mgPass" placeholder="كلمة المرور">
+    <p style="opacity:.7; font-size:.85em; margin-top:5px">⚠️ كلمة المرور دي هيبقى بيستخدمها قائد الفريق عشان يشوف الكروت</p>
+    <div class="flex-center">
+      <button class="btn btn-success" onclick="confirmAddGroup()">✅ حفظ</button>
+      <button class="btn btn-secondary" onclick="closeModal()">❌ إلغاء</button>
+    </div>
+  `);
+}
+
+function confirmAddGroup() {
+  const classId = parseInt(document.getElementById('mgClass').value);
+  const name = document.getElementById('mgName').value.trim();
+  const groupNumber = parseInt(document.getElementById('mgNumber').value) || 1;
+  const pass = document.getElementById('mgPass').value.trim();
+  if (!name) return toast('❌ أدخل اسم المجموعة');
+  if (!pass) return toast('❌ أدخل كلمة مرور القائد');
+  DB.groups.push({
+    id: Date.now(), name, groupNumber, classId, score: 0, password: pass,
+    cardsDrawn: 0
+  });
+  save(); closeModal();
+  renderGroups(); renderClasses(); renderTeacherStats(); updatePointsView();
+  toast('✅ تم إضافة المجموعة');
+}
+
+function renderGroups() {
+  const filter = document.getElementById('groupClassFilter');
+  const classId = filter.value ? parseInt(filter.value) : null;
+  let groups = DB.groups;
+  if (classId) groups = groups.filter(g => g.classId === classId);
+  const list = document.getElementById('groupsList');
+  if (!groups.length) {
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">👥</div><p>لا توجد مجموعات</p></div>';
+    return;
+  }
+  const maxScore = Math.max(...groups.map(g => g.score), 0);
+  list.innerHTML = groups.map(g => {
+    const cls = DB.classes.find(c => c.id === g.classId);
+    const isCrown = g.score === maxScore && maxScore > 0;
+    return `
+      <div class="group-card ${isCrown ? 'crown' : ''}">
+        ${isCrown ? '<div class="crown-badge">👑</div>' : ''}
+        <div class="group-name">${g.name}</div>
+        <div class="group-info">
+          <span>🏫 ${cls ? cls.name : 'غير محدد'}</span>
+          <span>🔢 رقم ${g.groupNumber}</span>
+          <span>🔑 ${g.password}</span>
+        </div>
+        <div class="group-score">${g.score}</div>
+        <div class="actions">
+          <button class="btn btn-danger btn-sm" onclick="deleteGroup(${g.id})">🗑️ حذف</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function deleteGroup(id) {
+  if (!confirm('⚠️ حذف المجموعة؟')) return;
+  DB.groups = DB.groups.filter(g => g.id !== id);
+  save(); renderGroups(); renderClasses(); renderTeacherStats(); updatePointsView();
+  toast('✅ تم الحذف');
+}
+
+// -- الأسئلة --
+function addQuestion() {
+  const text = document.getElementById('qText').value.trim();
+  const inputs = document.querySelectorAll('.q-option-input');
+  const options = Array.from(inputs).map(i => i.value.trim());
+  const correct = parseInt(document.getElementById('qCorrect').value);
+  const points = parseInt(document.getElementById('qPoints').value) || 10;
+  if (!text) return toast('❌ أدخل نص السؤال');
+  if (options.some(o => !o)) return toast('❌ أكمل كل الخيارات');
+  DB.questions.push({id: Date.now(), text, options, correct, points});
+  save();
+  document.getElementById('qText').value = '';
+  inputs.forEach(i => i.value = '');
+  renderQuestions(); renderTeacherStats();
+  toast('✅ تم إضافة السؤال');
+}
+
+function renderQuestions() {
+  const list = document.getElementById('questionsList');
+  if (!DB.questions.length) {
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">❓</div><p>لا توجد أسئلة</p></div>';
+    return;
+  }
+  list.innerHTML = DB.questions.map(q => `
+    <div class="question-item">
+      <div class="q-text">❓ ${q.text}</div>
+      <div class="q-options">
+        ${q.options.map((o, i) => `<div class="q-option ${i === q.correct ? 'correct' : ''}">${['🅰️','🅱️','🅲️','🅳️'][i]} ${o}</div>`).join('')}
+      </div>
+      <div class="q-points">💎 ${q.points}</div>
+      <button class="btn btn-danger btn-sm" onclick="deleteQuestion(${q.id})" style="float:left">🗑️</button>
+    </div>
+  `).join('');
+}
+
+function deleteQuestion(id) {
+  if (!confirm('⚠️ حذف السؤال؟')) return;
+  DB.questions = DB.questions.filter(q => q.id !== id);
+  save(); renderQuestions(); renderTeacherStats();
+}
+
+// -- الكروت --
+function addCard() {
+  const type = document.getElementById('cardType').value;
+  const title = document.getElementById('cardTitle').value.trim();
+  const desc = document.getElementById('cardDesc').value.trim();
+  const points = parseInt(document.getElementById('cardPoints').value) || 0;
+  if (!title) return toast('❌ أدخل عنوان الكارت');
+  DB.cards.push({id: Date.now(), type, title, desc, points});
+  save();
+  document.getElementById('cardTitle').value = '';
+  document.getElementById('cardDesc').value = '';
+  document.getElementById('cardPoints').value = '';
+  renderCards(); renderDrawWheel(); renderTeacherStats();
+  toast('✅ تم إضافة الكارت');
+}
+
+function renderCards() {
+  const list = document.getElementById('cardsList');
+  if (!DB.cards.length) {
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">🎴</div><p>لا توجد كروت</p></div>';
+    return;
+  }
+  const typeIcons = {question:'❓', bonus:'🎁', challenge:'⚔️', trap:'⚠️', special:'✨'};
+  const typeNames = {question:'سؤال', bonus:'بونص', challenge:'تحدي', trap:'فخ', special:'خاص'};
+  list.innerHTML = DB.cards.map(c => `
+    <div class="question-item">
+      <div class="q-text">${typeIcons[c.type]||'🎴'} ${c.title}</div>
+      <div style="opacity:.9; margin:8px 0">${c.desc || '(بدون شرح)'}</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <span class="badge badge-info">${typeNames[c.type]||'كارت'}</span>
+        ${c.points ? `<span class="badge badge-warning">💎 ${c.points}</span>` : ''}
+      </div>
+      <button class="btn btn-danger btn-sm" onclick="deleteCard(${c.id})" style="float:left">🗑️</button>
+    </div>
+  `).join('');
+}
+
+function deleteCard(id) {
+  if (!confirm('⚠️ حذف الكارت؟')) return;
+  DB.cards = DB.cards.filter(c => c.id !== id);
+  save(); renderCards(); renderDrawWheel(); renderTeacherStats();
+}
+
+// ============ نظام سحب الكروت ============
+function renderDrawWheel() {
+  const wheel = document.getElementById('drawWheel');
+  if (!wheel) return;
+  if (!DB.cards.length) {
+    wheel.style.background = '#666';
+    wheel.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#fff;font-size:1em;text-align:center;padding:20px">🎴 أضف كروت</div>';
+    return;
+  }
+  const colors = ['#e63946','#06a77d','#ffd60a','#457b9d','#f77f00','#8338ec','#fb5607','#3a86ff','#ff006e','#80ed99'];
+  const n = DB.cards.length;
+  let grad = 'conic-gradient(';
+  for (let i = 0; i < n; i++) {
+    const start = (i * 360 / n);
+    const end = ((i+1) * 360 / n);
+    grad += `${colors[i % colors.length]} ${start}deg ${end}deg${i<n-1?',':''}`;
+  }
+  grad += ')';
+  wheel.style.background = grad;
+  wheel.innerHTML = '';
+  wheel.style.transform = 'rotate(0deg)';
+}
+
+function resetDraw() {
+  currentDraw = { card:null, group:null };
+  document.getElementById('drawStep1').style.display = 'block';
+  document.getElementById('drawStep2').style.display = 'none';
+  document.getElementById('drawStep3').style.display = 'none';
+  renderDrawWheel();
+}
+
+function spinDrawWheel() {
+  if (!DB.cards.length) return toast('❌ أضف كروت أولاً');
+  if (!DB.groups.length) return toast('❌ لا توجد مجموعات');
+  const wheel = document.getElementById('drawWheel');
+  const idx = Math.floor(Math.random() * DB.cards.length);
+  const n = DB.cards.length;
+  const segAngle = 360 / n;
+  const targetAngle = 360*6 + (360 - (idx * segAngle + segAngle/2));
+  wheel.style.transition = 'transform 5s cubic-bezier(.17,.67,.21,.99)';
+  wheel.style.transform = `rotate(${targetAngle}deg)`;
+  
+  setTimeout(() => {
+    currentDraw.card = DB.cards[idx];
+    showDrawStep2();
+  }, 5100);
+}
+
+function showDrawStep2() {
+  document.getElementById('drawStep1').style.display = 'none';
+  document.getElementById('drawStep2').style.display = 'block';
+  const typeIcons = {question:'❓ سؤال', bonus:'🎁 بونص', challenge:'⚔️ تحدي', trap:'⚠️ فخ', special:'✨ خاص'};
+  document.getElementById('pendingType').innerText = typeIcons[currentDraw.card.type] || '🎴 كارت';
+  const sel = document.getElementById('drawGroupSelect');
+  sel.innerHTML = DB.groups.map(g => {
+    const cls = DB.classes.find(c => c.id === g.classId);
+    return `<option value="${g.id}">${g.name} - ${cls?cls.name:''} (رقم ${g.groupNumber})</option>`;
+  }).join('');
+}
+
+function sendCardToGroup() {
+  const gid = parseInt(document.getElementById('drawGroupSelect').value);
+  currentDraw.group = DB.groups.find(g => g.id === gid);
+  
+  // حفظ الكارت في pendingCard عشان القائد يشوفه
+  const pendingCard = {
+    id: Date.now(),
+    card: currentDraw.card,
+    groupId: currentDraw.group.id,
+    groupName: currentDraw.group.name,
+    timestamp: Date.now(),
+    viewed: false
+  };
+  localStorage.setItem('pendingCard_' + currentDraw.group.id, JSON.stringify(pendingCard));
+  
+  // إضافة للسجل
+  addLog('card-draw', `📤 تم إرسال كارت "${currentDraw.card.title}" لـ ${currentDraw.group.name}`);
+  
+  currentDraw.group.cardsDrawn = (currentDraw.group.cardsDrawn || 0) + 1;
+  save();
+  
+  // عرض رسالة الإرسال
+  document.getElementById('drawStep2').style.display = 'none';
+  document.getElementById('drawStep3').style.display = 'block';
+  document.getElementById('sentGroupName').innerText = currentDraw.group.name;
+  
+  toast(`✅ تم إرسال الكارت لـ ${currentDraw.group.name}`);
+}
+
+// -- النقاط --
+function updatePointsView() {
+  updatePointsGroups();
+  document.getElementById('plusRow').innerHTML = DB.plusValues.map(v => `<button class="points-btn plus" onclick="addPoints(${v})">➕ ${v}</button>`).join('');
+  document.getElementById('minusRow').innerHTML = DB.minusValues.map(v => `<button class="points-btn minus" onclick="addPoints(${-v})">➖ ${v}</button>`).join('');
+  showCurrentScore();
+}
+
+function updatePointsGroups() {
+  const classId = document.getElementById('pointsClass').value;
+  const sel = document.getElementById('pointsGroup');
+  let groups = DB.groups;
+  if (classId) groups = groups.filter(g => g.classId == classId);
+  sel.innerHTML = '<option value="">👥 اختر المجموعة</option>' +
+    groups.map(g => `<option value="${g.id}">${g.name} (رقم ${g.groupNumber})</option>`).join('');
+  showCurrentScore();
+}
+
+function showCurrentScore() {
+  const sel = document.getElementById('pointsGroup');
+  const g = DB.groups.find(x => x.id == sel.value);
+  document.getElementById('currentScore').innerText = g ? g.score : 0;
+}
+
+function addPoints(v) {
+  const sel = document.getElementById('pointsGroup');
+  const g = DB.groups.find(x => x.id == sel.value);
+  if (!g) return toast('❌ اختر مجموعة');
+  g.score += v;
+  save(); showCurrentScore(); renderGroups(); renderClasses();
+  addLog(v>0?'points-plus':'points-minus', `${g.name} ${v>0?'+':''}${v}`);
+  toast(`${v>0?'➕':'➖'} ${Math.abs(v)} لـ ${g.name}`);
+}
+
+function addCustomPoints(sign) {
+  const v = parseInt(document.getElementById('customPoints').value);
+  if (isNaN(v)) return toast('❌ أدخل رقم');
+  addPoints(v * sign);
+  document.getElementById('customPoints').value = '';
+}
+
+// -- السجل --
+function addLog(type, message) {
+  DB.log = DB.log || [];
+  DB.log.unshift({
+    type, message, time: new Date().toLocaleString('ar-EG'),
+    timestamp: Date.now()
+  });
+  if (DB.log.length > 100) DB.log = DB.log.slice(0, 100);
+  save();
+}
+
+function renderLog() {
+  const list = document.getElementById('logList');
+  const log = DB.log || [];
+  if (!log.length) {
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">📜</div><p>السجل فارغ</p></div>';
+    return;
+  }
+  const icons = {'points-plus':'➕', 'points-minus':'➖', 'card-draw':'🎴'};
+  list.innerHTML = log.map(l => `
+    <div class="log-item ${l.type}">
+      <div class="log-icon">${icons[l.type] || '📝'}</div>
+      <div class="log-content">${l.message}</div>
+      <div class="log-time">${l.time}</div>
+    </div>
+  `).join('');
+}
+
+function clearLog() {
+  if (!confirm('⚠️ مسح كل السجل؟')) return;
+  DB.log = [];
+  save(); renderLog();
+  toast('✅ تم المسح');
+}
+
+// -- الترتيب --
+function renderLeaderboard(type) {
+  const lbFilter = document.getElementById('lbClassFilter');
+  if (type === 'class') {
+    lbFilter.style.display = 'block';
+    const classId = lbFilter.value;
+    if (!classId) {
+      document.getElementById('leaderboardList').innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><p>اختر فصلاً</p></div>';
+      return;
+    }
+    const sorted = DB.groups.filter(g => g.classId == classId).sort((a,b) => b.score - a.score);
+    renderLeaderboardList(sorted, 'leaderboardList');
+  } else {
+    lbFilter.style.display = 'none';
+    const sorted = [...DB.groups].sort((a,b) => b.score - a.score);
+    renderLeaderboardList(sorted, 'leaderboardList');
+  }
+}
+
+function renderLeaderboardList(sorted, targetId) {
+  const list = document.getElementById(targetId);
+  if (!sorted.length) {
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">🏆</div><p>لا توجد مجموعات</p></div>';
+    return;
+  }
+  const medals = ['🥇','🥈','🥉'];
+  const classes = ['first','second','third'];
+  list.innerHTML = sorted.map((g,i) => {
+    const cls = DB.classes.find(c => c.id === g.classId);
+    return `
+      <div class="lb-item ${i<3 ? classes[i] : ''}">
+        <div class="rank">${i<3 ? medals[i] : (i+1)}</div>
+        <div class="name">${g.name} ${i===0 && g.score>0 ? '👑' : ''}</div>
+        <div class="class-tag">🏫 ${cls ? cls.name : 'غير محدد'}</div>
+        <div style="font-size:.85em; opacity:.8">🔢 رقم ${g.groupNumber}</div>
+        <div class="score">${g.score}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ============ القائد ============
+function loadLeader() {
+  const g = DB.groups.find(x => x.id === currentUser.groupId);
+  const cls = DB.classes.find(c => c.id === g.classId);
+  document.getElementById('leaderName').innerText = currentUser.name;
+  document.getElementById('leaderGroupInfo').innerText = `${g.name} - ${cls ? cls.name : ''} - رقم ${g.groupNumber}`;
+  document.getElementById('leaderScore').innerText = g.score;
+  const classGroups = DB.groups.filter(x => x.classId === g.classId).sort((a,b) => b.score - a.score);
+  document.getElementById('leaderClassRank').innerText = classGroups.findIndex(x => x.id === g.id) + 1;
+  const allGroups = [...DB.groups].sort((a,b) => b.score - a.score);
+  document.getElementById('leaderSchoolRank').innerText = allGroups.findIndex(x => x.id === g.id) + 1;
+  renderLeaderCard();
+}
+
+function switchLeaderTab(name, e) {
+  document.querySelectorAll('#leaderScreen .tab').forEach(t => t.classList.remove('active'));
+  e.currentTarget.classList.add('active');
+  document.getElementById('leaderTab-card').style.display = name === 'card' ? 'block' : 'none';
+  document.getElementById('leaderTab-info').style.display = name === 'info' ? 'block' : 'none';
+  if (name === 'info') loadLeader();
+}
+
+function renderLeaderCard() {
+  const area = document.getElementById('leaderCardArea');
+  const pending = localStorage.getItem('pendingCard_' + currentUser.groupId);
+  
+  if (!pending) {
+    area.innerHTML = `
+      <div class="waiting-card">
+        <div class="wait-icon">⏳</div>
+        <h2 style="color:var(--accent)">في انتظار كارت جديد</h2>
+        <p style="opacity:.8; margin-top:10px">المستر هيبعتلك كارت، استنى شوية</p>
+        <button class="btn" onclick="renderLeaderCard()" style="margin-top:15px">🔄 تحديث</button>
+      </div>
+    `;
+    return;
+  }
+  
+  const p = JSON.parse(pending);
+  
+  if (p.viewed) {
+    // الكارت اتشاف قبل كده
+    area.innerHTML = `
+      <div class="card" style="text-align:center">
+        <div style="font-size:3em; margin-bottom:10px">✅</div>
+        <h2>آخر كارت تم كشفه</h2>
+        ${renderCardDisplay(p.card)}
+        <p style="opacity:.7; margin-top:15px; font-size:.9em">
+          تم الإرسال: ${new Date(p.timestamp).toLocaleString('ar-EG')}
+        </p>
+        <button class="btn" onclick="renderLeaderCard()" style="margin-top:15px">🔄 تحديث</button>
+      </div>
+    `;
+    return;
+  }
+  
+  // كارت جديد - يظهر بشكل مميز
+  area.innerHTML = `
+    <div class="new-card-alert">
+      <div style="font-size:3em; margin-bottom:10px">🎉</div>
+      <h2 style="color:var(--primary); margin:10px 0">كارت جديد وصلك!</h2>
+      <p style="color:var(--primary); opacity:.9">اضغط عشان تشوف الكارت</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <button class="btn btn-lg glow" onclick="viewCard(${p.id})">🔓 كشف الكارت</button>
+    </div>
+  `;
+}
+
+function viewCard(pendingId) {
+  const pending = localStorage.getItem('pendingCard_' + currentUser.groupId);
+  if (!pending) return;
+  const p = JSON.parse(pending);
+  if (p.id !== pendingId) return;
+  
+  // تعليم الكارت كـ "تم مشاهدته"
+  p.viewed = true;
+  localStorage.setItem('pendingCard_' + currentUser.groupId, JSON.stringify(p));
+  
+  const area = document.getElementById('leaderCardArea');
+  area.innerHTML = `
+    <div class="card" style="text-align:center">
+      <h2>🎴 الكارت بتاعك</h2>
+      ${renderCardDisplay(p.card)}
+      <div class="flex-center" style="margin-top:20px">
+        <button class="btn btn-success btn-lg" onclick="confirmCardDone(${p.id}, true)">✅ تم التنفيذ</button>
+        <button class="btn btn-danger" onclick="confirmCardDone(${p.id}, false)">❌ لم يُنفذ</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderCardDisplay(card) {
+  const typeIcons = {question:'❓', bonus:'🎁', challenge:'⚔️', trap:'⚠️', special:'✨'};
+  const typeNames = {question:'سؤال', bonus:'بونص نقاط', challenge:'تحدي', trap:'فخ / ماينص', special:'كارت خاص'};
+  const typeColors = {
+    question:'linear-gradient(135deg, #457b9d, #1d3557)',
+    bonus:'linear-gradient(135deg, #06a77d, #005f73)',
+    challenge:'linear-gradient(135deg, #f77f00, #e63946)',
+    trap:'linear-gradient(135deg, #e63946, #9d0208)',
+    special:'linear-gradient(135deg, #8338ec, #3a86ff)'
+  };
+  return `
+    <div class="revealed-card show" style="background:${typeColors[card.type]}; color:#fff">
+      <div class="card-type">${typeIcons[card.type]} ${typeNames[card.type]}</div>
+      <div class="card-title">${card.title}</div>
+      <div class="card-desc">${card.desc || '(لا يوجد شرح)'}</div>
+      ${card.points ? `<div class="card-points">💎 ${card.points} نقطة</div>` : ''}
+    </div>
+  `;
+}
+
+function confirmCardDone(pendingId, done) {
+  const pending = localStorage.getItem('pendingCard_' + currentUser.groupId);
+  if (!pending) return;
+  const p = JSON.parse(pending);
+  if (p.id !== pendingId) return;
+  
+  const g = DB.groups.find(x => x.id === currentUser.groupId);
+  if (done && p.card.points) {
+    g.score += p.card.points;
+    addLog('points-plus', `${g.name} +${p.card.points} من كارت ${p.card.title}`);
+    toast(`✅ +${p.card.points} نقطة`);
+  } else if (!done) {
+    addLog('points-minus', `${g.name} لم ينفذ كارت ${p.card.title}`);
+    toast('❌ لم يُنفذ');
+  }
+  
+  // حذف الكارت بعد التنفيذ
+  localStorage.removeItem('pendingCard_' + currentUser.groupId);
+  save();
+  loadLeader();
+  renderLeaderCard();
+}
+
+// polling عشان القائد يشوف الكروت الجديدة تلقائياً
+function startLeaderPolling() {
+  if (pollInterval) clearInterval(pollInterval);
+  pollInterval = setInterval(() => {
+    if (currentUser && currentUser.role === 'leader') {
+      const area = document.getElementById('leaderCardArea');
+      if (area) renderLeaderCard();
+      // تحديث النقاط
+      const g = DB.groups.find(x => x.id === currentUser.groupId);
+      if (g) {
+        document.getElementById('leaderScore').innerText = g.score;
+      }
+    }
+  }, 2000);
+}
+
+// ============ الطالب ============
+function loadStudent() {
+  document.getElementById('studentName').innerText = currentUser.name;
+  renderStudentLeaderboard('school');
+}
+
+function renderStudentLeaderboard(type) {
+  const filter = document.getElementById('studentClassFilter');
+  if (type === 'class') {
+    filter.style.display = 'block';
+    const classId = filter.value;
+    if (!classId) {
+      document.getElementById('studentLeaderboard').innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><p>اختر فصلاً</p></div>';
+      return;
+    }
+    const sorted = DB.groups.filter(g => g.classId == classId).sort((a,b) => b.score - a.score);
+    renderLeaderboardList(sorted, 'studentLeaderboard');
+  } else {
+    filter.style.display = 'none';
+    const sorted = [...DB.groups].sort((a,b) => b.score - a.score);
+    renderLeaderboardList(sorted, 'studentLeaderboard');
+  }
+}
+
+// ============ المودال والتوست ============
+function showModal(html) {
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('modalBg').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('modalBg').classList.remove('show');
+}
+
+function toast(msg) {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2500);
+}
+
+document.getElementById('modalBg').addEventListener('click', e => {
+  if (e.target.id === 'modalBg') closeModal();
+});
+
+// الاستماع لتغييرات localStorage (لما المدرس يبعت كارت)
+window.addEventListener('storage', (e) => {
+  if (e.key && e.key.startsWith('pendingCard_') && currentUser && currentUser.role === 'leader') {
+    renderLeaderCard();
+  }
+});
+</script>
+</body>
+</html>
